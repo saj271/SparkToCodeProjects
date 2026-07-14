@@ -1,1 +1,3 @@
-<Solution />
+<Solution>
+  <Project Path="Task1solution/Task1solution.csproj" />
+</Solution>
