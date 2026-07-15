@@ -245,6 +245,149 @@ namespace Task2Solution
             }
 
             Console.WriteLine("Sum = " + totalSum);
+
+            ////////////////////////////////////////////////////
+            // Task 10 - Simple ATM Simulation
+            ////////////////////////////////////////////////////
+
+            Console.WriteLine("Task 10 - Simple ATM Simulation");
+
+            int correctPin = 1234;
+            double atmBalance = 100.000;
+            int pinAttempts = 0;
+            bool pinAccepted = false;
+
+            while (pinAttempts < 3 && !pinAccepted)
+            {
+                try
+                {
+                    Console.Write("Enter PIN: ");
+                    int enteredPin = int.Parse(Console.ReadLine());
+
+                    if (enteredPin == correctPin)
+                    {
+                        pinAccepted = true;
+                    }
+                    else
+                    {
+                        pinAttempts++;
+                        Console.WriteLine("Incorrect PIN");
+                    }
+                }
+                catch
+                {
+                    pinAttempts++;
+                    Console.WriteLine("Invalid PIN");
+                }
+            }
+
+            if (!pinAccepted)
+            {
+                Console.WriteLine("Card Blocked");
+            }
+            else
+            {
+                bool atmRunning = true;
+
+                while (atmRunning)
+                {
+                    Console.WriteLine("\n===== ATM MENU =====");
+                    Console.WriteLine("1. Deposit");
+                    Console.WriteLine("2. Withdraw");
+                    Console.WriteLine("3. Check Balance");
+                    Console.WriteLine("4. Exit");
+
+                    try
+                    {
+                        Console.Write("Choose an option: ");
+                        int atmChoice = int.Parse(Console.ReadLine());
+
+                        switch (atmChoice)
+                        {
+                            case 1:
+                                try
+                                {
+                                    Console.Write("Enter deposit amount: ");
+                                    double depositAmount = double.Parse(Console.ReadLine());
+
+                                    if (depositAmount <= 0)
+                                    {
+                                        Console.WriteLine("Amount must be positive.");
+                                    }
+                                    else
+                                    {
+                                        atmBalance = atmBalance + depositAmount;
+
+                                        Console.WriteLine(
+                                            "New Balance: " +
+                                            atmBalance.ToString("F3") +
+                                            " OMR"
+                                        );
+                                    }
+                                }
+                                catch
+                                {
+                                    Console.WriteLine("Invalid amount.");
+                                }
+
+                                break;
+
+                            case 2:
+                                try
+                                {
+                                    Console.Write("Enter withdrawal amount: ");
+                                    double withdrawalAmount = double.Parse(Console.ReadLine());
+
+                                    if (withdrawalAmount <= 0)
+                                    {
+                                        Console.WriteLine("Amount must be positive.");
+                                    }
+                                    else if (withdrawalAmount > atmBalance)
+                                    {
+                                        Console.WriteLine("Insufficient balance.");
+                                    }
+                                    else
+                                    {
+                                        atmBalance = atmBalance - withdrawalAmount;
+
+                                        Console.WriteLine(
+                                            "New Balance: " +
+                                            atmBalance.ToString("F3") +
+                                            " OMR"
+                                        );
+                                    }
+                                }
+                                catch
+                                {
+                                    Console.WriteLine("Invalid amount.");
+                                }
+
+                                break;
+
+                            case 3:
+                                Console.WriteLine(
+                                    "Current Balance: " +
+                                    atmBalance.ToString("F3") +
+                                    " OMR"
+                                );
+                                break;
+
+                            case 4:
+                                Console.WriteLine("Thank you for using the ATM.");
+                                atmRunning = false;
+                                break;
+
+                            default:
+                                Console.WriteLine("Invalid option.");
+                                break;
+                        }
+                    }
+                    catch
+                    {
+                        Console.WriteLine("Please enter a valid menu number.");
+                    }
+                }
+            }
         }
     }
 }
