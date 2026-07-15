@@ -183,6 +183,27 @@ namespace Task2Solution
                     Console.WriteLine("Please enter a valid number.");
                 }
             }
+
+            ////////////////////////////////////////////////////
+            // Task 8 - Sum of Even Numbers Only
+            ////////////////////////////////////////////////////
+
+            Console.WriteLine("Task 8 - Sum of Even Numbers Only");
+
+            Console.Write("Enter a positive whole number: ");
+            int evenLimit = int.Parse(Console.ReadLine());
+
+            int evenSum = 0;
+
+            for (int i = 1; i <= evenLimit; i++)
+            {
+                if (i % 2 == 0)
+                {
+                    evenSum = evenSum + i;
+                }
+            }
+
+            Console.WriteLine("Sum of even numbers = " + evenSum);
         }
     }
 }
