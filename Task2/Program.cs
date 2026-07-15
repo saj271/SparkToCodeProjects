@@ -37,6 +37,20 @@ namespace Task2Solution
             }
 
             Console.WriteLine("Sum = " + sum);
+
+            ////////////////////////////////////////////////////
+            // Task 3 - Multiplication Table
+            ////////////////////////////////////////////////////
+
+            Console.WriteLine("Task 3 - Multiplication Table");
+
+            Console.Write("Enter a number: ");
+            int tableNumber = int.Parse(Console.ReadLine());
+
+            for (int i = 1; i <= 10; i++)
+            {
+                Console.WriteLine(tableNumber + " x " + i + " = " + (tableNumber * i));
+            }
         }
     }
 }
