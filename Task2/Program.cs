@@ -104,6 +104,39 @@ namespace Task2Solution
 
             Console.WriteLine("Correct!");
             Console.WriteLine("Attempts: " + attempts);
+
+            ////////////////////////////////////////////////////
+            // Task 6 - Safe Division Calculator
+            ////////////////////////////////////////////////////
+
+            Console.WriteLine("Task 6 - Safe Division Calculator");
+
+            try
+            {
+                Console.Write("Enter the first number: ");
+                double firstNumber = double.Parse(Console.ReadLine());
+
+                Console.Write("Enter the second number: ");
+                double secondNumber = double.Parse(Console.ReadLine());
+
+                if (secondNumber == 0)
+                {
+                    Console.WriteLine("Cannot divide by zero.");
+                }
+                else
+                {
+                    double result = firstNumber / secondNumber;
+                    Console.WriteLine("Result = " + result);
+                }
+            }
+            catch (FormatException)
+            {
+                Console.WriteLine("Invalid input. Please enter numbers only.");
+            }
+            catch (Exception)
+            {
+                Console.WriteLine("An error occurred.");
+            }
         }
     }
 }
