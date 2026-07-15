@@ -137,6 +137,52 @@ namespace Task2Solution
             {
                 Console.WriteLine("An error occurred.");
             }
+
+            ////////////////////////////////////////////////////
+            // Task 7 - Repeating Menu with Exit Option
+            ////////////////////////////////////////////////////
+
+            Console.WriteLine("Task 7 - Repeating Menu with Exit Option");
+
+            bool exitMenu = false;
+
+            while (!exitMenu)
+            {
+                Console.WriteLine("\n===== MENU =====");
+                Console.WriteLine("1. Say Hello");
+                Console.WriteLine("2. Show Greeting");
+                Console.WriteLine("3. Exit");
+
+                try
+                {
+                    Console.Write("Choose an option: ");
+                    int menuChoice = int.Parse(Console.ReadLine());
+
+                    switch (menuChoice)
+                    {
+                        case 1:
+                            Console.WriteLine("Hello!");
+                            break;
+
+                        case 2:
+                            Console.WriteLine("Good Morning!");
+                            break;
+
+                        case 3:
+                            Console.WriteLine("Goodbye!");
+                            exitMenu = true;
+                            break;
+
+                        default:
+                            Console.WriteLine("Invalid option.");
+                            break;
+                    }
+                }
+                catch
+                {
+                    Console.WriteLine("Please enter a valid number.");
+                }
+            }
         }
     }
 }
