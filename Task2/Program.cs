@@ -19,6 +19,24 @@ namespace Task2Solution
             }
 
             Console.WriteLine("Liftoff!");
+
+            ////////////////////////////////////////////////////
+            // Task 2 - Sum of Numbers 1 to N
+            ////////////////////////////////////////////////////
+
+            Console.WriteLine("Task 2 - Sum of Numbers 1 to N");
+
+            Console.Write("Enter a positive number: ");
+            int n = int.Parse(Console.ReadLine());
+
+            int sum = 0;
+
+            for (int i = 1; i <= n; i++)
+            {
+                sum = sum + i;
+            }
+
+            Console.WriteLine("Sum = " + sum);
         }
     }
 }
