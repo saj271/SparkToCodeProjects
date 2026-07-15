@@ -51,6 +51,28 @@ namespace Task2Solution
             {
                 Console.WriteLine(tableNumber + " x " + i + " = " + (tableNumber * i));
             }
+
+            ////////////////////////////////////////////////////
+            // Task 4 - Password Retry
+            ////////////////////////////////////////////////////
+
+            Console.WriteLine("Task 4 - Password Retry");
+
+            string correctPassword = "Spark2026";
+            string enteredPassword = "";
+
+            while (enteredPassword != correctPassword)
+            {
+                Console.Write("Enter password: ");
+                enteredPassword = Console.ReadLine();
+
+                if (enteredPassword != correctPassword)
+                {
+                    Console.WriteLine("Incorrect password, try again");
+                }
+            }
+
+            Console.WriteLine("Access Granted");
         }
     }
 }
