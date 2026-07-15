@@ -73,6 +73,37 @@ namespace Task2Solution
             }
 
             Console.WriteLine("Access Granted");
+
+            ////////////////////////////////////////////////////
+            // Task 5 - Number Guessing Game
+            ////////////////////////////////////////////////////
+
+            Console.WriteLine("Task 5 - Number Guessing Game");
+
+            int secretNumber = 42;
+            int guessNumber;
+            int attempts = 0;
+
+            do
+            {
+                Console.Write("Enter your guess: ");
+                guessNumber = int.Parse(Console.ReadLine());
+
+                attempts++;
+
+                if (guessNumber > secretNumber)
+                {
+                    Console.WriteLine("Too high");
+                }
+                else if (guessNumber < secretNumber)
+                {
+                    Console.WriteLine("Too low");
+                }
+
+            } while (guessNumber != secretNumber);
+
+            Console.WriteLine("Correct!");
+            Console.WriteLine("Attempts: " + attempts);
         }
     }
 }
