@@ -22,6 +22,21 @@ namespace Task2Solution
             double absoluteDifference = Math.Abs(difference);
 
             Console.WriteLine("Absolute Difference = " + absoluteDifference);
+
+            ////////////////////////////////////////////////////
+            // Task 2 - Power & Root Explorer
+            ////////////////////////////////////////////////////
+
+            Console.WriteLine("Task 2 - Power & Root Explorer");
+
+            Console.Write("Enter a number: ");
+            double powerNumber = double.Parse(Console.ReadLine());
+
+            double squareResult = Math.Pow(powerNumber, 2);
+            double squareRootResult = Math.Sqrt(powerNumber);
+
+            Console.WriteLine("Square = " + squareResult);
+            Console.WriteLine("Square Root = " + squareRootResult);
         }
     }
 }
