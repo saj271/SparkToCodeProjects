@@ -180,6 +180,31 @@ namespace Task2Solution
             Console.WriteLine("Nearest Whole Number = " + nearestWhole);
             Console.WriteLine("Always Rounded Up = " + roundedUp);
             Console.WriteLine("Always Rounded Down = " + roundedDown);
+
+            ////////////////////////////////////////////////////
+            // Task 10 - Word Position Finder
+            ////////////////////////////////////////////////////
+
+            Console.WriteLine("Task 10 - Word Position Finder");
+
+            Console.Write("Enter a sentence: ");
+            string sentence = Console.ReadLine();
+
+            Console.Write("Enter a word to search: ");
+            string searchWord = Console.ReadLine();
+
+            int firstPosition = sentence.IndexOf(searchWord);
+            int lastPosition = sentence.LastIndexOf(searchWord);
+
+            if (firstPosition == -1)
+            {
+                Console.WriteLine("Word not found.");
+            }
+            else
+            {
+                Console.WriteLine("First Position = " + firstPosition);
+                Console.WriteLine("Last Position = " + lastPosition);
+            }
         }
     }
 }
