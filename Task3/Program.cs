@@ -37,6 +37,21 @@ namespace Task2Solution
 
             Console.WriteLine("Square = " + squareResult);
             Console.WriteLine("Square Root = " + squareRootResult);
+
+            ////////////////////////////////////////////////////
+            // Task 3 - Rounding Demonstration
+            ////////////////////////////////////////////////////
+
+            Console.WriteLine("Task 3 - Rounding Demonstration");
+
+            Console.Write("Enter a decimal number: ");
+            double decimalNumber = double.Parse(Console.ReadLine());
+
+            Console.WriteLine("Rounded = " + Math.Round(decimalNumber));
+            Console.WriteLine("Ceiling = " + Math.Ceiling(decimalNumber));
+            Console.WriteLine("Floor = " + Math.Floor(decimalNumber));
+
+           
         }
     }
 }
