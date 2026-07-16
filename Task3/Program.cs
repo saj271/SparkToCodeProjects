@@ -163,6 +163,23 @@ namespace Task2Solution
             }
 
             Console.WriteLine("Expiry Date = " + expiryDate.ToString("yyyy-MM-dd"));
+
+            ////////////////////////////////////////////////////
+            // Task 9 - Round Up / Round Down Explorer
+            ////////////////////////////////////////////////////
+
+            Console.WriteLine("Task 9 - Round Up / Round Down Explorer");
+
+            Console.Write("Enter a decimal number: ");
+            double decimalNumber = double.Parse(Console.ReadLine());
+
+            double nearestWhole = Math.Round(decimalNumber);
+            double roundedUp = Math.Ceiling(decimalNumber);
+            double roundedDown = Math.Floor(decimalNumber);
+
+            Console.WriteLine("Nearest Whole Number = " + nearestWhole);
+            Console.WriteLine("Always Rounded Up = " + roundedUp);
+            Console.WriteLine("Always Rounded Down = " + roundedDown);
         }
     }
 }
