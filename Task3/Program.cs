@@ -114,6 +114,30 @@ namespace Task2Solution
                     Console.WriteLine("Reason: Password must not contain the word 'password'.");
                 }
             }
+
+            ////////////////////////////////////////////////////
+            // Task 7 - Clean Name Comparator
+            ////////////////////////////////////////////////////
+
+            Console.WriteLine("Task 7 - Clean Name Comparator");
+
+            Console.Write("Enter the first name: ");
+            string firstName = Console.ReadLine();
+
+            Console.Write("Enter the second name: ");
+            string secondName = Console.ReadLine();
+
+            firstName = firstName.Trim().ToUpper();
+            secondName = secondName.Trim().ToUpper();
+
+            if (firstName == secondName)
+            {
+                Console.WriteLine("Match");
+            }
+            else
+            {
+                Console.WriteLine("No Match");
+            }
         }
     }
 }
