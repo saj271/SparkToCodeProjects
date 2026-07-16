@@ -77,6 +77,35 @@ namespace Task2Solution
             int randomNumber = randomGenerator.Next(1, 101);
 
             Console.WriteLine("Random Number = " + randomNumber);
+
+            ////////////////////////////////////////////////////
+            // Task 6 - Password Strength Checker
+            ////////////////////////////////////////////////////
+
+            Console.WriteLine("Task 6 - Password Strength Checker");
+
+            Console.Write("Enter your password: ");
+            string userPassword = Console.ReadLine();
+
+            if (userPassword.Length >= 8 &&
+                !userPassword.ToLower().Contains("password"))
+            {
+                Console.WriteLine("Strong Password");
+            }
+            else
+            {
+                Console.WriteLine("Weak Password");
+
+                if (userPassword.Length < 8)
+                {
+                    Console.WriteLine("Reason: Password must be at least 8 characters.");
+                }
+
+                if (userPassword.ToLower().Contains("password"))
+                {
+                    Console.WriteLine("Reason: Password must not contain the word 'password'.");
+                }
+            }
         }
     }
 }
