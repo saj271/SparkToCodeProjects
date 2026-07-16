@@ -155,6 +155,23 @@ namespace Task2Solution
             {
                 Console.WriteLine("Membership Status: Expired");
             }
+
+            ////////////////////////////////////////////////////
+            // Task 9 - Round Up / Round Down Explorer
+            ////////////////////////////////////////////////////
+
+            Console.WriteLine("Task 9 - Round Up / Round Down Explorer");
+
+            Console.Write("Enter a decimal number: ");
+            double roundingNumber = double.Parse(Console.ReadLine());
+
+            double nearestWhole = Math.Round(roundingNumber);
+            double roundedUp = Math.Ceiling(roundingNumber);
+            double roundedDown = Math.Floor(roundingNumber);
+
+            Console.WriteLine("Nearest Whole Number = " + nearestWhole);
+            Console.WriteLine("Always Rounded Up = " + roundedUp);
+            Console.WriteLine("Always Rounded Down = " + roundedDown);
         }
     }
 }
