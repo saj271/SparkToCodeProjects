@@ -172,6 +172,43 @@ namespace Task2Solution
             Console.WriteLine("Nearest Whole Number = " + nearestWhole);
             Console.WriteLine("Always Rounded Up = " + roundedUp);
             Console.WriteLine("Always Rounded Down = " + roundedDown);
+
+            ////////////////////////////////////////////////////
+            // Task 10 - Number Guessing Game with Hints
+            ////////////////////////////////////////////////////
+
+            Console.WriteLine("Task 10 - Number Guessing Game with Hints");
+
+            Random gameRandom = new Random();
+
+            int secretNumber = gameRandom.Next(1, 101);
+
+            int userGuess = 0;
+
+            while (userGuess != secretNumber)
+            {
+                Console.Write("Guess a number between 1 and 100: ");
+                userGuess = int.Parse(Console.ReadLine());
+
+                int guessDifference = Math.Abs(userGuess - secretNumber);
+
+                if (userGuess == secretNumber)
+                {
+                    Console.WriteLine("Correct! You guessed the number.");
+                }
+                else if (guessDifference <= 5)
+                {
+                    Console.WriteLine("Very Close!");
+                }
+                else if (userGuess > secretNumber)
+                {
+                    Console.WriteLine("Too High!");
+                }
+                else
+                {
+                    Console.WriteLine("Too Low!");
+                }
+            }
         }
     }
 }
