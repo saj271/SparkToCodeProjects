@@ -37,6 +37,19 @@ namespace Task2Solution
 
             Console.WriteLine("Square = " + square);
             Console.WriteLine("Square Root = " + squareRoot);
+
+            ////////////////////////////////////////////////////
+            // Task 3 - Name Formatter
+            ////////////////////////////////////////////////////
+
+            Console.WriteLine("Task 3 - Name Formatter");
+
+            Console.Write("Enter your full name: ");
+            string fullName = Console.ReadLine();
+
+            Console.WriteLine("Uppercase = " + fullName.ToUpper());
+            Console.WriteLine("Lowercase = " + fullName.ToLower());
+            Console.WriteLine("Number of Characters = " + fullName.Length);
         }
     }
 }
