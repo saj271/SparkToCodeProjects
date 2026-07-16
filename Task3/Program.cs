@@ -250,6 +250,34 @@ namespace Task2Solution
             {
                 Console.WriteLine("Verification Failed");
             }
+
+            ////////////////////////////////////////////////////
+            // Task 12 - Birthday Insights
+            ////////////////////////////////////////////////////
+
+            Console.WriteLine("Task 12 - Birthday Insights");
+
+            try
+            {
+                Console.Write("Enter your date of birth (yyyy-MM-dd): ");
+                DateTime birthDate = DateTime.Parse(Console.ReadLine());
+
+                int age = DateTime.Today.Year - birthDate.Year;
+
+                if (DateTime.Today.Month < birthDate.Month ||
+                   (DateTime.Today.Month == birthDate.Month &&
+                    DateTime.Today.Day < birthDate.Day))
+                {
+                    age--;
+                }
+
+                Console.WriteLine("Age = " + age);
+                Console.WriteLine("Day of Birth = " + birthDate.DayOfWeek);
+            }
+            catch
+            {
+                Console.WriteLine("Invalid date.");
+            }
         }
     }
 }
