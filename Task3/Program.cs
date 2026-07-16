@@ -50,6 +50,19 @@ namespace Task2Solution
             Console.WriteLine("Uppercase = " + fullName.ToUpper());
             Console.WriteLine("Lowercase = " + fullName.ToLower());
             Console.WriteLine("Number of Characters = " + fullName.Length);
+
+            ////////////////////////////////////////////////////
+            // Task 4 - Subscription End Date
+            ////////////////////////////////////////////////////
+
+            Console.WriteLine("Task 4 - Subscription End Date");
+
+            Console.Write("Enter the number of trial days: ");
+            int trialDays = int.Parse(Console.ReadLine());
+
+            DateTime endDate = DateTime.Today.AddDays(trialDays);
+
+            Console.WriteLine("Subscription End Date = " + endDate.ToString("yyyy-MM-dd"));
         }
     }
 }
