@@ -205,6 +205,51 @@ namespace Task2Solution
                 Console.WriteLine("First Position = " + firstPosition);
                 Console.WriteLine("Last Position = " + lastPosition);
             }
+
+            ////////////////////////////////////////////////////
+            // Task 11 - One-Time Password (OTP) Generator
+            ////////////////////////////////////////////////////
+
+            Console.WriteLine("Task 11 - One-Time Password Generator");
+
+            Random otpGenerator = new Random();
+            int otpCode = otpGenerator.Next(1000, 10000);
+
+            Console.WriteLine("OTP Sent: " + otpCode);
+
+            int otpAttempts = 0;
+            bool otpVerified = false;
+
+            while (otpAttempts < 3 && !otpVerified)
+            {
+                try
+                {
+                    Console.Write("Enter the OTP: ");
+                    int enteredOtp = int.Parse(Console.ReadLine());
+
+                    otpAttempts++;
+
+                    if (enteredOtp == otpCode)
+                    {
+                        otpVerified = true;
+                        Console.WriteLine("Verified");
+                    }
+                    else
+                    {
+                        Console.WriteLine("Incorrect OTP");
+                    }
+                }
+                catch (FormatException)
+                {
+                    otpAttempts++;
+                    Console.WriteLine("Invalid input. Enter numbers only.");
+                }
+            }
+
+            if (!otpVerified)
+            {
+                Console.WriteLine("Verification Failed");
+            }
         }
     }
 }
