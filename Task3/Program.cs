@@ -65,6 +65,18 @@ namespace Task2Solution
             Console.WriteLine("Sin = " + Math.Sin(angleRadians));
             Console.WriteLine("Cos = " + Math.Cos(angleRadians));
             Console.WriteLine("Tan = " + Math.Tan(angleRadians));
+
+            ////////////////////////////////////////////////////
+            // Task 5 - Random Number Generator
+            ////////////////////////////////////////////////////
+
+            Console.WriteLine("Task 5 - Random Number Generator");
+
+            Random randomGenerator = new Random();
+
+            int randomNumber = randomGenerator.Next(1, 101);
+
+            Console.WriteLine("Random Number = " + randomNumber);
         }
     }
 }
