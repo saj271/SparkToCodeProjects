@@ -51,7 +51,20 @@ namespace Task2Solution
             Console.WriteLine("Ceiling = " + Math.Ceiling(decimalNumber));
             Console.WriteLine("Floor = " + Math.Floor(decimalNumber));
 
-           
+            ////////////////////////////////////////////////////
+            // Task 4 - Trigonometry Explorer
+            ////////////////////////////////////////////////////
+
+            Console.WriteLine("Task 4 - Trigonometry Explorer");
+
+            Console.Write("Enter an angle in degrees: ");
+            double angleDegrees = double.Parse(Console.ReadLine());
+
+            double angleRadians = angleDegrees * Math.PI / 180;
+
+            Console.WriteLine("Sin = " + Math.Sin(angleRadians));
+            Console.WriteLine("Cos = " + Math.Cos(angleRadians));
+            Console.WriteLine("Tan = " + Math.Tan(angleRadians));
         }
     }
 }
