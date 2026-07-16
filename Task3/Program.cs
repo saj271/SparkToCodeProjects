@@ -63,6 +63,28 @@ namespace Task2Solution
             DateTime endDate = DateTime.Today.AddDays(trialDays);
 
             Console.WriteLine("Subscription End Date = " + endDate.ToString("yyyy-MM-dd"));
+
+            ////////////////////////////////////////////////////
+            // Task 5 - Grade Rounding System
+            ////////////////////////////////////////////////////
+
+            Console.WriteLine("Task 5 - Grade Rounding System");
+
+            Console.Write("Enter your exam score: ");
+            double examScore = double.Parse(Console.ReadLine());
+
+            double roundedScore = Math.Round(examScore);
+
+            Console.WriteLine("Rounded Score = " + roundedScore);
+
+            if (roundedScore >= 60)
+            {
+                Console.WriteLine("Result = Pass");
+            }
+            else
+            {
+                Console.WriteLine("Result = Fail");
+            }
         }
     }
 }
