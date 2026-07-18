@@ -295,6 +295,104 @@ namespace Task5
                                   firstFailingGrade);
             }
 
+            ////////////////////////////////////////////////////
+            // Task 10 - Print Queue Manager
+            ////////////////////////////////////////////////////
+
+            Console.WriteLine("Task 10 - Print Queue Manager");
+
+            Queue<string> printQueue = new Queue<string>();
+            bool addingPrintJobs = true;
+
+            while (addingPrintJobs)
+            {
+                Console.Write("Enter print job name or type done: ");
+                string printJob = Console.ReadLine();
+
+                if (printJob.ToLower() == "done")
+                {
+                    addingPrintJobs = false;
+                }
+                else
+                {
+                    printQueue.Enqueue(printJob);
+                }
+            }
+
+            Console.WriteLine("Print Queue Before Cancellation:");
+
+            if (printQueue.Count == 0)
+            {
+                Console.WriteLine("The print queue is empty.");
+            }
+            else
+            {
+                foreach (string job in printQueue)
+                {
+                    Console.WriteLine("- " + job);
+                }
+            }
+
+            Console.Write("Enter the print job to cancel: ");
+            string jobToCancel = Console.ReadLine();
+
+            printQueue = RemoveJob(printQueue, jobToCancel);
+
+            Console.WriteLine("Print Queue After Cancellation:");
+
+            if (printQueue.Count == 0)
+            {
+                Console.WriteLine("The print queue is empty.");
+            }
+            else
+            {
+                foreach (string job in printQueue)
+                {
+                    Console.WriteLine("- " + job);
+                }
+            }
+        }
+
+        static double CalculateAverage(List<int> grades)
+        {
+            int total = 0;
+
+            for (int i = 0; i < grades.Count; i++)
+            {
+                total = total + grades[i];
+            }
+
+            if (grades.Count == 0)
+            {
+                return 0;
+            }
+
+            return (double)total / grades.Count;
+        }
+
+        static int FindFirstFailing(List<int> grades)
+        {
+            return grades.Find(grade => grade < 60);
+        }
+
+        static Queue<string> RemoveJob(
+            Queue<string> originalQueue,
+            string jobName)
+        {
+            Queue<string> updatedQueue = new Queue<string>();
+
+            while (originalQueue.Count > 0)
+            {
+                string currentJob = originalQueue.Dequeue();
+
+                if (currentJob.ToLower() != jobName.ToLower())
+                {
+                    updatedQueue.Enqueue(currentJob);
+                }
+            }
+
+            return updatedQueue;
+
 
         }
     }
