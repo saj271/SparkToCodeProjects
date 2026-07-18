@@ -57,7 +57,7 @@ namespace BankingProject
                         break;
 
                     case 4:
-                        Console.WriteLine("Show balance service is not added yet.");
+                        ShowBalance();
                         break;
 
                     case 5:
@@ -241,7 +241,33 @@ namespace BankingProject
 
             Console.WriteLine("Withdrawal completed successfully.");
             Console.WriteLine(
-                "Updated Balance = " + balances[accountIndex]);
+     "Updated Balance = " + balances[accountIndex]);
+        }
+
+        static void ShowBalance()
+        {
+            Console.WriteLine();
+            Console.WriteLine("===== Show Balance =====");
+
+            Console.Write("Enter account number: ");
+            string accountNumber = Console.ReadLine();
+
+            int accountIndex = accountNumbers.IndexOf(accountNumber);
+
+            if (accountIndex == -1)
+            {
+                Console.WriteLine("Error: Account number not found.");
+                return;
+            }
+
+            Console.WriteLine(
+                "Customer Name = " + customerNames[accountIndex]);
+
+            Console.WriteLine(
+                "Account Number = " + accountNumbers[accountIndex]);
+
+            Console.WriteLine(
+                "Current Balance = " + balances[accountIndex]);
         }
     }
 }
