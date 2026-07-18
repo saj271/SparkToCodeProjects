@@ -73,6 +73,29 @@ namespace Task4
             Console.WriteLine("1) Start");
             Console.WriteLine("2) Help");
             Console.WriteLine("3) Exit");
+
+            ////////////////////////////////////////////////////
+            // Task 5 - Even or Odd Function
+            ////////////////////////////////////////////////////
+
+            Console.Write("Enter a number: ");
+            int number = int.Parse(Console.ReadLine());
+
+            bool result = IsEven(number);
+
+            if (result)
+            {
+                Console.WriteLine("Even");
+            }
+            else
+            {
+                Console.WriteLine("Odd");
+            }
+        }
+
+        static bool IsEven(int number)
+        {
+            return number % 2 == 0;
         }
     }
 }
