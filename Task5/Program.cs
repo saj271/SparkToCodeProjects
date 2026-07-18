@@ -1,0 +1,399 @@
+﻿using System;
+using System.Collections.Generic;
+
+namespace Task5
+{
+    internal class Program
+    {
+        static void Main(string[] args)
+        {
+            ////////////////////////////////////////////////////
+            // Task 1 - Fixed Grades Array
+            ////////////////////////////////////////////////////
+
+            Console.WriteLine("Task 1 - Fixed Grades Array");
+
+            int[] fixedGrades = new int[5];
+
+            for (int i = 0; i < fixedGrades.Length; i++)
+            {
+                Console.Write("Enter grade " + (i + 1) + ": ");
+                fixedGrades[i] = int.Parse(Console.ReadLine());
+            }
+
+            Console.WriteLine("Entered Grades:");
+
+            foreach (int grade in fixedGrades)
+            {
+                Console.WriteLine(grade);
+            }
+
+            ////////////////////////////////////////////////////
+            // Task 2 - Dynamic To-Do List
+            ////////////////////////////////////////////////////
+
+            Console.WriteLine("Task 2 - Dynamic To-Do List");
+
+            List<string> todoList = new List<string>();
+
+            for (int i = 0; i < 5; i++)
+            {
+                Console.Write("Enter task " + (i + 1) + ": ");
+                string todoItem = Console.ReadLine();
+
+                todoList.Add(todoItem);
+            }
+
+            Console.WriteLine("To-Do List:");
+
+            int todoNumber = 1;
+
+            foreach (string task in todoList)
+            {
+                Console.WriteLine(todoNumber + ") " + task);
+                todoNumber++;
+            }
+
+            ////////////////////////////////////////////////////
+            // Task 3 - Browsing History Stack
+            ////////////////////////////////////////////////////
+
+            Console.WriteLine("Task 3 - Browsing History Stack");
+
+            Stack<string> browsingHistory = new Stack<string>();
+
+            for (int i = 0; i < 3; i++)
+            {
+                Console.Write("Enter website URL " + (i + 1) + ": ");
+                string websiteUrl = Console.ReadLine();
+
+                browsingHistory.Push(websiteUrl);
+            }
+
+            string closedPage = browsingHistory.Pop();
+
+            Console.WriteLine("Back button pressed.");
+            Console.WriteLine("Page left = " + closedPage);
+            Console.WriteLine("Page landed on = " + browsingHistory.Peek());
+
+            ////////////////////////////////////////////////////
+            // Task 4 - Customer Service Queue
+            ////////////////////////////////////////////////////
+
+            Console.WriteLine("Task 4 - Customer Service Queue");
+
+            Queue<string> customerQueue = new Queue<string>();
+
+            for (int i = 0; i < 3; i++)
+            {
+                Console.Write("Enter customer name " + (i + 1) + ": ");
+                string customerName = Console.ReadLine();
+
+                customerQueue.Enqueue(customerName);
+            }
+
+            string servedCustomer = customerQueue.Dequeue();
+
+            Console.WriteLine("Customer served = " + servedCustomer);
+
+            ////////////////////////////////////////////////////
+            // Task 5 - Array Grade Range
+            ////////////////////////////////////////////////////
+
+            Console.WriteLine("Task 5 - Array Grade Range");
+
+            int[] gradeRange = new int[5];
+            int gradeTotal = 0;
+
+            for (int i = 0; i < gradeRange.Length; i++)
+            {
+                Console.Write("Enter grade " + (i + 1) + ": ");
+                gradeRange[i] = int.Parse(Console.ReadLine());
+
+                gradeTotal = gradeTotal + gradeRange[i];
+            }
+
+            Array.Sort(gradeRange);
+
+            int lowestGrade = gradeRange[0];
+            int highestGrade = gradeRange[gradeRange.Length - 1];
+            double gradeAverage = (double)gradeTotal / gradeRange.Length;
+
+            Console.WriteLine("Lowest Grade = " + lowestGrade);
+            Console.WriteLine("Highest Grade = " + highestGrade);
+            Console.WriteLine("Average = " + gradeAverage);
+
+            ////////////////////////////////////////////////////
+            // Task 6 - Filtered Shopping List
+            ////////////////////////////////////////////////////
+
+            Console.WriteLine("Task 6 - Filtered Shopping List");
+
+            List<string> shoppingList = new List<string>();
+            bool addingShoppingItems = true;
+
+            while (addingShoppingItems)
+            {
+                Console.Write("Enter shopping item or type done: ");
+                string shoppingItem = Console.ReadLine();
+
+                if (shoppingItem.ToLower() == "done")
+                {
+                    addingShoppingItems = false;
+                }
+                else
+                {
+                    shoppingList.Add(shoppingItem);
+                }
+            }
+
+            Console.WriteLine("Shopping List Before Removal:");
+
+            foreach (string item in shoppingList)
+            {
+                Console.WriteLine("- " + item);
+            }
+
+            Console.Write("Enter an item to remove: ");
+            string itemToRemove = Console.ReadLine();
+
+            bool itemRemoved = shoppingList.Remove(itemToRemove);
+
+            if (itemRemoved)
+            {
+                Console.WriteLine("Item removed successfully.");
+            }
+            else
+            {
+                Console.WriteLine("Item was not found.");
+            }
+
+            Console.WriteLine("Shopping List After Removal:");
+
+            foreach (string item in shoppingList)
+            {
+                Console.WriteLine("- " + item);
+            }
+
+            ////////////////////////////////////////////////////
+            // Task 7 - High Score Podium
+            ////////////////////////////////////////////////////
+
+            Console.WriteLine("Task 7 - High Score Podium");
+
+            List<int> gameScores = new List<int>();
+
+            for (int i = 0; i < 5; i++)
+            {
+                Console.Write("Enter game score " + (i + 1) + ": ");
+                int gameScore = int.Parse(Console.ReadLine());
+
+                gameScores.Add(gameScore);
+            }
+
+            gameScores.Sort();
+            gameScores.Reverse();
+
+            Console.WriteLine("1st Place = " + gameScores[0]);
+            Console.WriteLine("2nd Place = " + gameScores[1]);
+            Console.WriteLine("3rd Place = " + gameScores[2]);
+
+            ////////////////////////////////////////////////////
+            // Task 8 - Undo Last Action
+            ////////////////////////////////////////////////////
+
+            Console.WriteLine("Task 8 - Undo Last Action");
+
+            Stack<string> editorActions = new Stack<string>();
+            bool enteringActions = true;
+
+            while (enteringActions)
+            {
+                Console.Write("Enter an action or type stop: ");
+                string editorAction = Console.ReadLine();
+
+                if (editorAction.ToLower() == "stop")
+                {
+                    enteringActions = false;
+                }
+                else
+                {
+                    editorActions.Push(editorAction);
+                }
+            }
+
+            if (editorActions.Count > 0)
+            {
+                string firstUndoneAction = editorActions.Pop();
+                Console.WriteLine("First undone action = " +
+                                  firstUndoneAction);
+            }
+            else
+            {
+                Console.WriteLine("No action available for first undo.");
+            }
+
+            if (editorActions.Count > 0)
+            {
+                string secondUndoneAction = editorActions.Pop();
+                Console.WriteLine("Second undone action = " +
+                                  secondUndoneAction);
+            }
+            else
+            {
+                Console.WriteLine("No action available for second undo.");
+            }
+
+            Console.WriteLine("Remaining Actions:");
+
+            if (editorActions.Count == 0)
+            {
+                Console.WriteLine("No actions remaining.");
+            }
+            else
+            {
+                foreach (string action in editorActions)
+                {
+                    Console.WriteLine("- " + action);
+                }
+            }
+
+            ////////////////////////////////////////////////////
+            // Task 9 - Grade Analyzer with Functions
+            ////////////////////////////////////////////////////
+
+            Console.WriteLine("Task 9 - Grade Analyzer with Functions");
+
+            Console.Write("How many grades do you want to enter? ");
+            int numberOfGrades = int.Parse(Console.ReadLine());
+
+            List<int> analyzedGrades = new List<int>();
+
+            for (int i = 0; i < numberOfGrades; i++)
+            {
+                Console.Write("Enter grade " + (i + 1) + ": ");
+                int analyzedGrade = int.Parse(Console.ReadLine());
+
+                analyzedGrades.Add(analyzedGrade);
+            }
+
+            double analyzedAverage =
+                CalculateAverage(analyzedGrades);
+
+            int firstFailingGrade =
+                FindFirstFailing(analyzedGrades);
+
+            Console.WriteLine("Average = " + analyzedAverage);
+
+            if (firstFailingGrade == 0)
+            {
+                Console.WriteLine("No failing grade was found.");
+            }
+            else
+            {
+                Console.WriteLine("First Failing Grade = " +
+                                  firstFailingGrade);
+            }
+
+            ////////////////////////////////////////////////////
+            // Task 10 - Print Queue Manager
+            ////////////////////////////////////////////////////
+
+            Console.WriteLine("Task 10 - Print Queue Manager");
+
+            Queue<string> printQueue = new Queue<string>();
+            bool addingPrintJobs = true;
+
+            while (addingPrintJobs)
+            {
+                Console.Write("Enter print job name or type done: ");
+                string printJob = Console.ReadLine();
+
+                if (printJob.ToLower() == "done")
+                {
+                    addingPrintJobs = false;
+                }
+                else
+                {
+                    printQueue.Enqueue(printJob);
+                }
+            }
+
+            Console.WriteLine("Print Queue Before Cancellation:");
+
+            if (printQueue.Count == 0)
+            {
+                Console.WriteLine("The print queue is empty.");
+            }
+            else
+            {
+                foreach (string job in printQueue)
+                {
+                    Console.WriteLine("- " + job);
+                }
+            }
+
+            Console.Write("Enter the print job to cancel: ");
+            string jobToCancel = Console.ReadLine();
+
+            printQueue = RemoveJob(printQueue, jobToCancel);
+
+            Console.WriteLine("Print Queue After Cancellation:");
+
+            if (printQueue.Count == 0)
+            {
+                Console.WriteLine("The print queue is empty.");
+            }
+            else
+            {
+                foreach (string job in printQueue)
+                {
+                    Console.WriteLine("- " + job);
+                }
+            }
+        }
+
+        static double CalculateAverage(List<int> grades)
+        {
+            int total = 0;
+
+            for (int i = 0; i < grades.Count; i++)
+            {
+                total = total + grades[i];
+            }
+
+            if (grades.Count == 0)
+            {
+                return 0;
+            }
+
+            return (double)total / grades.Count;
+        }
+
+        static int FindFirstFailing(List<int> grades)
+        {
+            return grades.Find(grade => grade < 60);
+        }
+
+        static Queue<string> RemoveJob(
+            Queue<string> originalQueue,
+            string jobName)
+        {
+            Queue<string> updatedQueue = new Queue<string>();
+
+            while (originalQueue.Count > 0)
+            {
+                string currentJob = originalQueue.Dequeue();
+
+                if (currentJob.ToLower() != jobName.ToLower())
+                {
+                    updatedQueue.Enqueue(currentJob);
+                }
+            }
+
+            return updatedQueue;
+
+
+        }
+    }
+}
