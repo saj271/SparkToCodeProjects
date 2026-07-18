@@ -28,7 +28,31 @@ namespace Task5
                 Console.WriteLine(grade);
             }
 
-           
+            ////////////////////////////////////////////////////
+            // Task 2 - Dynamic To-Do List
+            ////////////////////////////////////////////////////
+
+            Console.WriteLine("Task 2 - Dynamic To-Do List");
+
+            List<string> todoList = new List<string>();
+
+            for (int i = 0; i < 5; i++)
+            {
+                Console.Write("Enter task " + (i + 1) + ": ");
+                string todoItem = Console.ReadLine();
+
+                todoList.Add(todoItem);
+            }
+
+            Console.WriteLine("To-Do List:");
+
+            int todoNumber = 1;
+
+            foreach (string task in todoList)
+            {
+                Console.WriteLine(todoNumber + ") " + task);
+                todoNumber++;
+            }
         }
     }
 }
