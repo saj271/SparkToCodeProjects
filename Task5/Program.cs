@@ -75,6 +75,27 @@ namespace Task5
             Console.WriteLine("Back button pressed.");
             Console.WriteLine("Page left = " + closedPage);
             Console.WriteLine("Page landed on = " + browsingHistory.Peek());
+
+            ////////////////////////////////////////////////////
+            // Task 4 - Customer Service Queue
+            ////////////////////////////////////////////////////
+
+            Console.WriteLine("Task 4 - Customer Service Queue");
+
+            Queue<string> customerQueue = new Queue<string>();
+
+            for (int i = 0; i < 3; i++)
+            {
+                Console.Write("Enter customer name " + (i + 1) + ": ");
+                string customerName = Console.ReadLine();
+
+                customerQueue.Enqueue(customerName);
+            }
+
+            string servedCustomer = customerQueue.Dequeue();
+
+            Console.WriteLine("Customer served = " + servedCustomer);
+
         }
     }
 }
