@@ -387,11 +387,21 @@ namespace BankingProject
                 return;
             }
 
+            Console.Write("Are you sure you want to close this account? (Y/N): ");
+            string confirmation = Console.ReadLine();
+
+            if (confirmation.ToUpper() != "Y")
+            {
+                Console.WriteLine("Account closure cancelled.");
+                return;
+            }
+
             customerNames.RemoveAt(accountIndex);
             accountNumbers.RemoveAt(accountIndex);
             balances.RemoveAt(accountIndex);
 
             Console.WriteLine("Account closed successfully.");
         }
+
     }
 }
