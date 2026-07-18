@@ -198,6 +198,66 @@ namespace Task5
             Console.WriteLine("2nd Place = " + gameScores[1]);
             Console.WriteLine("3rd Place = " + gameScores[2]);
 
+            ////////////////////////////////////////////////////
+            // Task 8 - Undo Last Action
+            ////////////////////////////////////////////////////
+
+            Console.WriteLine("Task 8 - Undo Last Action");
+
+            Stack<string> editorActions = new Stack<string>();
+            bool enteringActions = true;
+
+            while (enteringActions)
+            {
+                Console.Write("Enter an action or type stop: ");
+                string editorAction = Console.ReadLine();
+
+                if (editorAction.ToLower() == "stop")
+                {
+                    enteringActions = false;
+                }
+                else
+                {
+                    editorActions.Push(editorAction);
+                }
+            }
+
+            if (editorActions.Count > 0)
+            {
+                string firstUndoneAction = editorActions.Pop();
+                Console.WriteLine("First undone action = " +
+                                  firstUndoneAction);
+            }
+            else
+            {
+                Console.WriteLine("No action available for first undo.");
+            }
+
+            if (editorActions.Count > 0)
+            {
+                string secondUndoneAction = editorActions.Pop();
+                Console.WriteLine("Second undone action = " +
+                                  secondUndoneAction);
+            }
+            else
+            {
+                Console.WriteLine("No action available for second undo.");
+            }
+
+            Console.WriteLine("Remaining Actions:");
+
+            if (editorActions.Count == 0)
+            {
+                Console.WriteLine("No actions remaining.");
+            }
+            else
+            {
+                foreach (string action in editorActions)
+                {
+                    Console.WriteLine("- " + action);
+                }
+            }
+
 
         }
     }
