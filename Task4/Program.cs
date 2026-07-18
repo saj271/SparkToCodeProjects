@@ -1,4 +1,6 @@
-﻿namespace Task4
+﻿using System;
+
+namespace Task4
 {
     internal class Program
     {
@@ -13,6 +15,8 @@
 
             PrintWelcome(userName);
 
+            Console.WriteLine();
+
             ////////////////////////////////////////////////////
             // Task 2 - Square Number Function
             ////////////////////////////////////////////////////
@@ -24,6 +28,8 @@
 
             Console.WriteLine("Square = " + result);
 
+            Console.WriteLine();
+
             ////////////////////////////////////////////////////
             // Task 3 - Celsius to Fahrenheit Function
             ////////////////////////////////////////////////////
@@ -34,6 +40,14 @@
             double fahrenheit = CelsiusToFahrenheit(celsius);
 
             Console.WriteLine("Temperature in Fahrenheit = " + fahrenheit);
+
+            Console.WriteLine();
+
+            ////////////////////////////////////////////////////
+            // Task 4 - Fixed Menu Display Function
+            ////////////////////////////////////////////////////
+
+            DisplayMenu();
         }
 
         static void PrintWelcome(string name)
@@ -51,6 +65,14 @@
         {
             double fahrenheit = (celsius * 9 / 5) + 32;
             return fahrenheit;
+        }
+
+        static void DisplayMenu()
+        {
+            Console.WriteLine("========== MENU ==========");
+            Console.WriteLine("1) Start");
+            Console.WriteLine("2) Help");
+            Console.WriteLine("3) Exit");
         }
     }
 }
