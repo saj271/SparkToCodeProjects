@@ -175,6 +175,29 @@ namespace Task5
                 Console.WriteLine("- " + item);
             }
 
+            ////////////////////////////////////////////////////
+            // Task 7 - High Score Podium
+            ////////////////////////////////////////////////////
+
+            Console.WriteLine("Task 7 - High Score Podium");
+
+            List<int> gameScores = new List<int>();
+
+            for (int i = 0; i < 5; i++)
+            {
+                Console.Write("Enter game score " + (i + 1) + ": ");
+                int gameScore = int.Parse(Console.ReadLine());
+
+                gameScores.Add(gameScore);
+            }
+
+            gameScores.Sort();
+            gameScores.Reverse();
+
+            Console.WriteLine("1st Place = " + gameScores[0]);
+            Console.WriteLine("2nd Place = " + gameScores[1]);
+            Console.WriteLine("3rd Place = " + gameScores[2]);
+
 
         }
     }
