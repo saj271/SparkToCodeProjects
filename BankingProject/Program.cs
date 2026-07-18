@@ -49,7 +49,7 @@ namespace BankingProject
                         break;
 
                     case 2:
-                        Console.WriteLine("Deposit service is not added yet.");
+                        DepositMoney();
                         break;
 
                     case 3:
@@ -140,6 +140,54 @@ namespace BankingProject
             Console.WriteLine("Customer Name = " + customerName);
             Console.WriteLine("Account Number = " + accountNumber);
             Console.WriteLine("Starting Balance = " + initialDeposit);
+        }
+
+        static void DepositMoney()
+        {
+            Console.WriteLine();
+            Console.WriteLine("===== Deposit Money =====");
+
+            Console.Write("Enter account number: ");
+            string accountNumber = Console.ReadLine();
+
+            int accountIndex = accountNumbers.IndexOf(accountNumber);
+
+            if (accountIndex == -1)
+            {
+                Console.WriteLine("Error: Account number not found.");
+                return;
+            }
+
+            Console.Write("Enter deposit amount: ");
+
+            double depositAmount;
+
+            try
+            {
+                depositAmount = double.Parse(Console.ReadLine());
+            }
+            catch
+            {
+                Console.WriteLine(
+                    "Invalid amount. Please enter a valid number.");
+
+                return;
+            }
+
+            if (depositAmount <= 0)
+            {
+                Console.WriteLine(
+                    "Deposit amount must be greater than zero.");
+
+                return;
+            }
+
+            balances[accountIndex] =
+                balances[accountIndex] + depositAmount;
+
+            Console.WriteLine("Deposit completed successfully.");
+            Console.WriteLine(
+                "Updated Balance = " + balances[accountIndex]);
         }
     }
 }
