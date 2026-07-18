@@ -69,7 +69,7 @@ namespace BankingProject
                         break;
 
                     case 7:
-                        Console.WriteLine("Close account service is not added yet.");
+                        CloseAccount();
                         break;
 
                     case 8:
@@ -369,6 +369,29 @@ namespace BankingProject
                 Console.WriteLine("Balance = " + balances[i]);
                 Console.WriteLine("------------------------");
             }
+        }
+
+        static void CloseAccount()
+        {
+            Console.WriteLine();
+            Console.WriteLine("===== Close Account =====");
+
+            Console.Write("Enter account number: ");
+            string accountNumber = Console.ReadLine();
+
+            int accountIndex = accountNumbers.IndexOf(accountNumber);
+
+            if (accountIndex == -1)
+            {
+                Console.WriteLine("Error: Account number not found.");
+                return;
+            }
+
+            customerNames.RemoveAt(accountIndex);
+            accountNumbers.RemoveAt(accountIndex);
+            balances.RemoveAt(accountIndex);
+
+            Console.WriteLine("Account closed successfully.");
         }
     }
 }
