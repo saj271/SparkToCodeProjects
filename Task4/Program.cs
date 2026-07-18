@@ -126,9 +126,14 @@ namespace Task4
             double multiplyTwoDoubles = Multiply(2.5, 4.0);
             int multiplyThreeIntegers = Multiply(2, 3, 4);
 
-            Console.WriteLine("Two integers result = " + multiplyTwoIntegers);
-            Console.WriteLine("Two doubles result = " + multiplyTwoDoubles);
-            Console.WriteLine("Three integers result = " + multiplyThreeIntegers);
+            Console.WriteLine(
+                "Two integers result = " + multiplyTwoIntegers);
+
+            Console.WriteLine(
+                "Two doubles result = " + multiplyTwoDoubles);
+
+            Console.WriteLine(
+                "Three integers result = " + multiplyThreeIntegers);
 
             ////////////////////////////////////////////////////
             // Task 10 - Overloaded Area Calculator
@@ -156,7 +161,8 @@ namespace Task4
                 Console.Write("Enter width: ");
                 double areaWidth = double.Parse(Console.ReadLine());
 
-                double areaResult = CalculateArea(areaLength, areaWidth);
+                double areaResult =
+                    CalculateArea(areaLength, areaWidth);
 
                 Console.WriteLine("Rectangle Area = " + areaResult);
             }
@@ -164,6 +170,116 @@ namespace Task4
             {
                 Console.WriteLine("Invalid shape.");
             }
+
+            ////////////////////////////////////////////////////
+            // Task 11 - Function-Based Calculator
+            ////////////////////////////////////////////////////
+
+            Console.WriteLine("Task 11 - Function-Based Calculator");
+
+            bool calculatorRunning = true;
+
+            while (calculatorRunning)
+            {
+                Console.WriteLine("1) Add");
+                Console.WriteLine("2) Subtract");
+                Console.WriteLine("3) Multiply");
+                Console.WriteLine("4) Divide");
+                Console.WriteLine("5) Exit");
+
+                Console.Write("Choose an operation: ");
+                int operationChoice =
+                    int.Parse(Console.ReadLine());
+
+                if (operationChoice == 5)
+                {
+                    calculatorRunning = false;
+                }
+                else if (operationChoice >= 1 &&
+                         operationChoice <= 4)
+                {
+                    Console.Write("Enter the first number: ");
+                    double calculatorNumber1 =
+                        double.Parse(Console.ReadLine());
+
+                    Console.Write("Enter the second number: ");
+                    double calculatorNumber2 =
+                        double.Parse(Console.ReadLine());
+
+                    double calculatorResult = 0;
+                    string operationName = "";
+
+                    switch (operationChoice)
+                    {
+                        case 1:
+                            operationName = "Addition";
+                            calculatorResult =
+                                Add(calculatorNumber1,
+                                    calculatorNumber2);
+                            break;
+
+                        case 2:
+                            operationName = "Subtraction";
+                            calculatorResult =
+                                Subtract(calculatorNumber1,
+                                         calculatorNumber2);
+                            break;
+
+                        case 3:
+                            operationName = "Multiplication";
+                            calculatorResult =
+                                MultiplyNumbers(calculatorNumber1,
+                                                calculatorNumber2);
+                            break;
+
+                        case 4:
+                            operationName = "Division";
+                            calculatorResult =
+                                DivideNumbers(calculatorNumber1,
+                                              calculatorNumber2);
+                            break;
+                    }
+
+                    DisplayResult(operationName, calculatorResult);
+                }
+                else
+                {
+                    Console.WriteLine("Invalid choice.");
+                }
+            }
+
+            ////////////////////////////////////////////////////
+            // Task 12 - Student Report Card Generator
+            ////////////////////////////////////////////////////
+
+            Console.WriteLine("Task 12 - Student Report Card Generator");
+
+            Console.Write("Enter student name: ");
+            string studentName = Console.ReadLine();
+
+            Console.Write("Enter first subject score: ");
+            double firstSubjectScore =
+                double.Parse(Console.ReadLine());
+
+            Console.Write("Enter second subject score: ");
+            double secondSubjectScore =
+                double.Parse(Console.ReadLine());
+
+            Console.Write("Enter third subject score: ");
+            double thirdSubjectScore =
+                double.Parse(Console.ReadLine());
+
+            double studentAverage =
+                CalculateAverage(firstSubjectScore,
+                                 secondSubjectScore,
+                                 thirdSubjectScore);
+
+            string studentGrade =
+                GetGradeLetter(studentAverage);
+
+            PrintReportCard(studentName,
+                            studentAverage,
+                            studentGrade);
         }
 
         static void PrintWelcome(string name)
@@ -246,7 +362,9 @@ namespace Task4
             return number1 * number2;
         }
 
-        static int Multiply(int number1, int number2, int number3)
+        static int Multiply(int number1,
+                            int number2,
+                            int number3)
         {
             return number1 * number2 * number3;
         }
@@ -254,6 +372,92 @@ namespace Task4
         static double CalculateArea(double side)
         {
             return side * side;
+        }
+
+        static double Add(double number1, double number2)
+        {
+            return number1 + number2;
+        }
+
+        static double Subtract(double number1, double number2)
+        {
+            return number1 - number2;
+        }
+
+        static double MultiplyNumbers(double number1,
+                                      double number2)
+        {
+            return number1 * number2;
+        }
+
+        static double DivideNumbers(double number1,
+                                    double number2)
+        {
+            try
+            {
+                if (number2 == 0)
+                {
+                    throw new DivideByZeroException();
+                }
+
+                return number1 / number2;
+            }
+            catch (DivideByZeroException)
+            {
+                Console.WriteLine(
+                    "Cannot divide by zero.");
+
+                return 0;
+            }
+        }
+
+        static void DisplayResult(string operationName,
+                                  double result)
+        {
+            Console.WriteLine(
+                operationName + " Result = " + result);
+        }
+
+        static double CalculateAverage(double score1,
+                                       double score2,
+                                       double score3)
+        {
+            return (score1 + score2 + score3) / 3;
+        }
+
+        static string GetGradeLetter(double average)
+        {
+            if (average >= 90)
+            {
+                return "A";
+            }
+            else if (average >= 80)
+            {
+                return "B";
+            }
+            else if (average >= 70)
+            {
+                return "C";
+            }
+            else if (average >= 60)
+            {
+                return "D";
+            }
+            else
+            {
+                return "F";
+            }
+        }
+
+        static void PrintReportCard(string studentName,
+                                    double average,
+                                    string grade)
+        {
+            Console.WriteLine("========== REPORT CARD ==========");
+            Console.WriteLine("Student Name = " + studentName);
+            Console.WriteLine("Average = " + average);
+            Console.WriteLine("Grade = " + grade);
+            Console.WriteLine("=================================");
         }
     }
 }
