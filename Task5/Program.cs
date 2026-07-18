@@ -258,6 +258,43 @@ namespace Task5
                 }
             }
 
+            ////////////////////////////////////////////////////
+            // Task 9 - Grade Analyzer with Functions
+            ////////////////////////////////////////////////////
+
+            Console.WriteLine("Task 9 - Grade Analyzer with Functions");
+
+            Console.Write("How many grades do you want to enter? ");
+            int numberOfGrades = int.Parse(Console.ReadLine());
+
+            List<int> analyzedGrades = new List<int>();
+
+            for (int i = 0; i < numberOfGrades; i++)
+            {
+                Console.Write("Enter grade " + (i + 1) + ": ");
+                int analyzedGrade = int.Parse(Console.ReadLine());
+
+                analyzedGrades.Add(analyzedGrade);
+            }
+
+            double analyzedAverage =
+                CalculateAverage(analyzedGrades);
+
+            int firstFailingGrade =
+                FindFirstFailing(analyzedGrades);
+
+            Console.WriteLine("Average = " + analyzedAverage);
+
+            if (firstFailingGrade == 0)
+            {
+                Console.WriteLine("No failing grade was found.");
+            }
+            else
+            {
+                Console.WriteLine("First Failing Grade = " +
+                                  firstFailingGrade);
+            }
+
 
         }
     }
