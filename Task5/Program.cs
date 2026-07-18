@@ -53,6 +53,28 @@ namespace Task5
                 Console.WriteLine(todoNumber + ") " + task);
                 todoNumber++;
             }
+
+            ////////////////////////////////////////////////////
+            // Task 3 - Browsing History Stack
+            ////////////////////////////////////////////////////
+
+            Console.WriteLine("Task 3 - Browsing History Stack");
+
+            Stack<string> browsingHistory = new Stack<string>();
+
+            for (int i = 0; i < 3; i++)
+            {
+                Console.Write("Enter website URL " + (i + 1) + ": ");
+                string websiteUrl = Console.ReadLine();
+
+                browsingHistory.Push(websiteUrl);
+            }
+
+            string closedPage = browsingHistory.Pop();
+
+            Console.WriteLine("Back button pressed.");
+            Console.WriteLine("Page left = " + closedPage);
+            Console.WriteLine("Page landed on = " + browsingHistory.Peek());
         }
     }
 }
