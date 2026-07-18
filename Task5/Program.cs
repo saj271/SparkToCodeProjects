@@ -96,6 +96,34 @@ namespace Task5
 
             Console.WriteLine("Customer served = " + servedCustomer);
 
+            ////////////////////////////////////////////////////
+            // Task 5 - Array Grade Range
+            ////////////////////////////////////////////////////
+
+            Console.WriteLine("Task 5 - Array Grade Range");
+
+            int[] gradeRange = new int[5];
+            int gradeTotal = 0;
+
+            for (int i = 0; i < gradeRange.Length; i++)
+            {
+                Console.Write("Enter grade " + (i + 1) + ": ");
+                gradeRange[i] = int.Parse(Console.ReadLine());
+
+                gradeTotal = gradeTotal + gradeRange[i];
+            }
+
+            Array.Sort(gradeRange);
+
+            int lowestGrade = gradeRange[0];
+            int highestGrade = gradeRange[gradeRange.Length - 1];
+            double gradeAverage = (double)gradeTotal / gradeRange.Length;
+
+            Console.WriteLine("Lowest Grade = " + lowestGrade);
+            Console.WriteLine("Highest Grade = " + highestGrade);
+            Console.WriteLine("Average = " + gradeAverage);
+
+
         }
     }
 }
