@@ -115,6 +115,55 @@ namespace Task4
             int countdownStart = int.Parse(Console.ReadLine());
 
             Countdown(countdownStart);
+
+            ////////////////////////////////////////////////////
+            // Task 9 - Overloaded Multiply Function
+            ////////////////////////////////////////////////////
+
+            Console.WriteLine("Task 9 - Overloaded Multiply Function");
+
+            int multiplyTwoIntegers = Multiply(5, 3);
+            double multiplyTwoDoubles = Multiply(2.5, 4.0);
+            int multiplyThreeIntegers = Multiply(2, 3, 4);
+
+            Console.WriteLine("Two integers result = " + multiplyTwoIntegers);
+            Console.WriteLine("Two doubles result = " + multiplyTwoDoubles);
+            Console.WriteLine("Three integers result = " + multiplyThreeIntegers);
+
+            ////////////////////////////////////////////////////
+            // Task 10 - Overloaded Area Calculator
+            ////////////////////////////////////////////////////
+
+            Console.WriteLine("Task 10 - Overloaded Area Calculator");
+
+            Console.Write("Choose shape (Square or Rectangle): ");
+            string shapeChoice = Console.ReadLine();
+
+            if (shapeChoice.ToLower() == "square")
+            {
+                Console.Write("Enter side: ");
+                double squareSide = double.Parse(Console.ReadLine());
+
+                double squareArea = CalculateArea(squareSide);
+
+                Console.WriteLine("Square Area = " + squareArea);
+            }
+            else if (shapeChoice.ToLower() == "rectangle")
+            {
+                Console.Write("Enter length: ");
+                double areaLength = double.Parse(Console.ReadLine());
+
+                Console.Write("Enter width: ");
+                double areaWidth = double.Parse(Console.ReadLine());
+
+                double areaResult = CalculateArea(areaLength, areaWidth);
+
+                Console.WriteLine("Rectangle Area = " + areaResult);
+            }
+            else
+            {
+                Console.WriteLine("Invalid shape.");
+            }
         }
 
         static void PrintWelcome(string name)
@@ -185,6 +234,26 @@ namespace Task4
             {
                 Console.WriteLine(i);
             }
+        }
+
+        static int Multiply(int number1, int number2)
+        {
+            return number1 * number2;
+        }
+
+        static double Multiply(double number1, double number2)
+        {
+            return number1 * number2;
+        }
+
+        static int Multiply(int number1, int number2, int number3)
+        {
+            return number1 * number2 * number3;
+        }
+
+        static double CalculateArea(double side)
+        {
+            return side * side;
         }
     }
 }
