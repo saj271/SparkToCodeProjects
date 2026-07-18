@@ -53,7 +53,7 @@ namespace BankingProject
                         break;
 
                     case 3:
-                        Console.WriteLine("Withdraw service is not added yet.");
+                        WithdrawMoney();
                         break;
 
                     case 4:
@@ -186,6 +186,60 @@ namespace BankingProject
                 balances[accountIndex] + depositAmount;
 
             Console.WriteLine("Deposit completed successfully.");
+            Console.WriteLine(
+     "Updated Balance = " + balances[accountIndex]);
+        }
+
+        static void WithdrawMoney()
+        {
+            Console.WriteLine();
+            Console.WriteLine("===== Withdraw Money =====");
+
+            Console.Write("Enter account number: ");
+            string accountNumber = Console.ReadLine();
+
+            int accountIndex = accountNumbers.IndexOf(accountNumber);
+
+            if (accountIndex == -1)
+            {
+                Console.WriteLine("Error: Account number not found.");
+                return;
+            }
+
+            Console.Write("Enter withdrawal amount: ");
+
+            double withdrawalAmount;
+
+            try
+            {
+                withdrawalAmount = double.Parse(Console.ReadLine());
+            }
+            catch
+            {
+                Console.WriteLine(
+                    "Invalid amount. Please enter a valid number.");
+
+                return;
+            }
+
+            if (withdrawalAmount <= 0)
+            {
+                Console.WriteLine(
+                    "Withdrawal amount must be greater than zero.");
+
+                return;
+            }
+
+            if (withdrawalAmount > balances[accountIndex])
+            {
+                Console.WriteLine("Error: Insufficient balance.");
+                return;
+            }
+
+            balances[accountIndex] =
+                balances[accountIndex] - withdrawalAmount;
+
+            Console.WriteLine("Withdrawal completed successfully.");
             Console.WriteLine(
                 "Updated Balance = " + balances[accountIndex]);
         }
