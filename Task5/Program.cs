@@ -123,6 +123,58 @@ namespace Task5
             Console.WriteLine("Highest Grade = " + highestGrade);
             Console.WriteLine("Average = " + gradeAverage);
 
+            ////////////////////////////////////////////////////
+            // Task 6 - Filtered Shopping List
+            ////////////////////////////////////////////////////
+
+            Console.WriteLine("Task 6 - Filtered Shopping List");
+
+            List<string> shoppingList = new List<string>();
+            bool addingShoppingItems = true;
+
+            while (addingShoppingItems)
+            {
+                Console.Write("Enter shopping item or type done: ");
+                string shoppingItem = Console.ReadLine();
+
+                if (shoppingItem.ToLower() == "done")
+                {
+                    addingShoppingItems = false;
+                }
+                else
+                {
+                    shoppingList.Add(shoppingItem);
+                }
+            }
+
+            Console.WriteLine("Shopping List Before Removal:");
+
+            foreach (string item in shoppingList)
+            {
+                Console.WriteLine("- " + item);
+            }
+
+            Console.Write("Enter an item to remove: ");
+            string itemToRemove = Console.ReadLine();
+
+            bool itemRemoved = shoppingList.Remove(itemToRemove);
+
+            if (itemRemoved)
+            {
+                Console.WriteLine("Item removed successfully.");
+            }
+            else
+            {
+                Console.WriteLine("Item was not found.");
+            }
+
+            Console.WriteLine("Shopping List After Removal:");
+
+            foreach (string item in shoppingList)
+            {
+                Console.WriteLine("- " + item);
+            }
+
 
         }
     }
