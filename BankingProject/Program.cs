@@ -1,0 +1,145 @@
+﻿using System;
+using System.Collections.Generic;
+
+namespace BankingProject
+{
+    internal class Program
+    {
+        static List<string> customerNames = new List<string>();
+        static List<string> accountNumbers = new List<string>();
+        static List<double> balances = new List<double>();
+
+        static void Main(string[] args)
+        {
+            bool exitApp = false;
+
+            while (!exitApp)
+            {
+                Console.WriteLine();
+                Console.WriteLine("===== Welcome to Spark Bank =====");
+                Console.WriteLine("1. Add New Account");
+                Console.WriteLine("2. Deposit Money");
+                Console.WriteLine("3. Withdraw Money");
+                Console.WriteLine("4. Show Balance");
+                Console.WriteLine("5. Transfer Amount");
+                Console.WriteLine("6. List All Accounts");
+                Console.WriteLine("7. Close Account");
+                Console.WriteLine("8. Exit");
+
+                Console.Write("Choose an option: ");
+
+                int choice;
+
+                try
+                {
+                    choice = int.Parse(Console.ReadLine());
+                }
+                catch
+                {
+                    Console.WriteLine(
+                        "Invalid input. Please enter a number from 1 to 8.");
+
+                    continue;
+                }
+
+                switch (choice)
+                {
+                    case 1:
+                        AddAccount();
+                        break;
+
+                    case 2:
+                        Console.WriteLine("Deposit service is not added yet.");
+                        break;
+
+                    case 3:
+                        Console.WriteLine("Withdraw service is not added yet.");
+                        break;
+
+                    case 4:
+                        Console.WriteLine("Show balance service is not added yet.");
+                        break;
+
+                    case 5:
+                        Console.WriteLine("Transfer service is not added yet.");
+                        break;
+
+                    case 6:
+                        Console.WriteLine("List accounts service is not added yet.");
+                        break;
+
+                    case 7:
+                        Console.WriteLine("Close account service is not added yet.");
+                        break;
+
+                    case 8:
+                        exitApp = true;
+
+                        Console.WriteLine(
+                            "Thank you for banking with Spark Bank. Goodbye!");
+
+                        break;
+
+                    default:
+                        Console.WriteLine(
+                            "Invalid option, please choose between 1 and 8.");
+
+                        break;
+                }
+            }
+        }
+
+        static void AddAccount()
+        {
+            Console.WriteLine();
+            Console.WriteLine("===== Add New Account =====");
+
+            Console.Write("Enter customer name: ");
+            string customerName = Console.ReadLine();
+
+            Console.Write("Enter new account number: ");
+            string accountNumber = Console.ReadLine();
+
+            if (accountNumbers.Contains(accountNumber))
+            {
+                Console.WriteLine(
+                    "Error: This account number already exists.");
+
+                return;
+            }
+
+            Console.Write("Enter initial deposit amount: ");
+
+            double initialDeposit;
+
+            try
+            {
+                initialDeposit = double.Parse(Console.ReadLine());
+            }
+            catch
+            {
+                Console.WriteLine(
+                    "Invalid amount. Please enter a valid number.");
+
+                return;
+            }
+
+            if (initialDeposit < 0)
+            {
+                Console.WriteLine(
+                    "Initial deposit cannot be negative.");
+
+                return;
+            }
+
+            customerNames.Add(customerName);
+            accountNumbers.Add(accountNumber);
+            balances.Add(initialDeposit);
+
+            Console.WriteLine("Account created successfully.");
+            Console.WriteLine("Customer Name = " + customerName);
+            Console.WriteLine("Account Number = " + accountNumber);
+            Console.WriteLine("Starting Balance = " + initialDeposit);
+        }
+    }
+}
