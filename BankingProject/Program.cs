@@ -65,7 +65,7 @@ namespace BankingProject
                         break;
 
                     case 6:
-                        Console.WriteLine("List accounts service is not added yet.");
+                        ListAllAccounts();
                         break;
 
                     case 7:
@@ -346,9 +346,29 @@ namespace BankingProject
 
             Console.WriteLine(
                 "Sender Updated Balance = " + balances[senderIndex]);
-
             Console.WriteLine(
                 "Receiver Updated Balance = " + balances[receiverIndex]);
+        }
+
+        static void ListAllAccounts()
+        {
+            Console.WriteLine();
+            Console.WriteLine("===== All Accounts =====");
+
+            if (accountNumbers.Count == 0)
+            {
+                Console.WriteLine("No accounts found.");
+                return;
+            }
+
+            for (int i = 0; i < accountNumbers.Count; i++)
+            {
+                Console.WriteLine("Account " + (i + 1));
+                Console.WriteLine("Customer Name = " + customerNames[i]);
+                Console.WriteLine("Account Number = " + accountNumbers[i]);
+                Console.WriteLine("Balance = " + balances[i]);
+                Console.WriteLine("------------------------");
+            }
         }
     }
 }
