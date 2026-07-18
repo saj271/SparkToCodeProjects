@@ -61,7 +61,7 @@ namespace BankingProject
                         break;
 
                     case 5:
-                        Console.WriteLine("Transfer service is not added yet.");
+                        TransferAmount();
                         break;
 
                     case 6:
@@ -265,9 +265,90 @@ namespace BankingProject
 
             Console.WriteLine(
                 "Account Number = " + accountNumbers[accountIndex]);
-
             Console.WriteLine(
                 "Current Balance = " + balances[accountIndex]);
+        }
+
+        static void TransferAmount()
+        {
+            Console.WriteLine();
+            Console.WriteLine("===== Transfer Amount =====");
+
+            Console.Write("Enter sender account number: ");
+            string senderAccountNumber = Console.ReadLine();
+
+            int senderIndex =
+                accountNumbers.IndexOf(senderAccountNumber);
+
+            if (senderIndex == -1)
+            {
+                Console.WriteLine("Error: Sender account not found.");
+                return;
+            }
+
+            Console.Write("Enter receiver account number: ");
+            string receiverAccountNumber = Console.ReadLine();
+
+            int receiverIndex =
+                accountNumbers.IndexOf(receiverAccountNumber);
+
+            if (receiverIndex == -1)
+            {
+                Console.WriteLine("Error: Receiver account not found.");
+                return;
+            }
+
+            if (senderIndex == receiverIndex)
+            {
+                Console.WriteLine(
+                    "Error: Sender and receiver accounts cannot be the same.");
+
+                return;
+            }
+
+            Console.Write("Enter transfer amount: ");
+
+            double transferAmount;
+
+            try
+            {
+                transferAmount = double.Parse(Console.ReadLine());
+            }
+            catch
+            {
+                Console.WriteLine(
+                    "Invalid amount. Please enter a valid number.");
+
+                return;
+            }
+
+            if (transferAmount <= 0)
+            {
+                Console.WriteLine(
+                    "Transfer amount must be greater than zero.");
+
+                return;
+            }
+
+            if (transferAmount > balances[senderIndex])
+            {
+                Console.WriteLine("Error: Insufficient balance.");
+                return;
+            }
+
+            balances[senderIndex] =
+                balances[senderIndex] - transferAmount;
+
+            balances[receiverIndex] =
+                balances[receiverIndex] + transferAmount;
+
+            Console.WriteLine("Transfer completed successfully.");
+
+            Console.WriteLine(
+                "Sender Updated Balance = " + balances[senderIndex]);
+
+            Console.WriteLine(
+                "Receiver Updated Balance = " + balances[receiverIndex]);
         }
     }
 }
