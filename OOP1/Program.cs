@@ -45,10 +45,34 @@ namespace OOP1
         }
     }
 
+    class Student
+    {
+        public int Grade { get; set; }
+        public string Name { get; set; }
+        public string Address { get; set; }
+
+        private string email;
+        int age;
+
+        public void Register(string Email)
+        {
+            email = Email;
+            SendEmail();
+        }
+
+        private void SendEmail()
+        {
+            Console.WriteLine("Registration email sent.");
+        }
+    }
+
     internal class Program
     {
         static BankAccount account1 = new BankAccount();
         static BankAccount account2 = new BankAccount();
+
+        static Student student1 = new Student();
+        static Student student2 = new Student();
 
         static void Main(string[] args)
         {
@@ -60,6 +84,14 @@ namespace OOP1
             account2.HolderName = "Ali";
             account2.Balance = 63;
 
+            student1.Name = "Ali";
+            student1.Address = "Muscat";
+            student1.Grade = 65;
+
+            student2.Name = "Ahmed";
+            student2.Address = "Muscat";
+            student2.Grade = 70;
+
             bool exitProgram = false;
 
             while (!exitProgram)
@@ -67,6 +99,7 @@ namespace OOP1
                 Console.WriteLine();
                 Console.WriteLine("===== OOP Management System =====");
                 Console.WriteLine("1. View Account Details");
+                Console.WriteLine("2. Update Student Address");
                 Console.WriteLine("20. Exit");
                 Console.Write("Choose an option: ");
 
@@ -86,6 +119,10 @@ namespace OOP1
                 {
                     case 1:
                         ViewAccountDetails();
+                        break;
+
+                    case 2:
+                        UpdateStudentAddress();
                         break;
 
                     case 20:
@@ -133,5 +170,51 @@ namespace OOP1
                 Console.WriteLine("Invalid account choice.");
             }
         }
+
+        static void UpdateStudentAddress()
+            {
+                Console.WriteLine();
+                Console.WriteLine("===== Update Student Address =====");
+
+                Console.WriteLine("1. Ali");
+                Console.WriteLine("2. Ahmed");
+                Console.Write("Choose a student: ");
+
+                int studentChoice;
+
+                try
+                {
+                    studentChoice = int.Parse(Console.ReadLine());
+                }
+                catch
+                {
+                    Console.WriteLine("Invalid input.");
+                    return;
+                }
+
+                Console.Write("Enter the new address: ");
+                string newAddress = Console.ReadLine();
+
+                if (studentChoice == 1)
+                {
+                    student1.Address = newAddress;
+
+                    Console.WriteLine("Address updated successfully.");
+                    Console.WriteLine("Student Name: " + student1.Name);
+                    Console.WriteLine("New Address: " + student1.Address);
+                }
+                else if (studentChoice == 2)
+                {
+                    student2.Address = newAddress;
+
+                    Console.WriteLine("Address updated successfully.");
+                    Console.WriteLine("Student Name: " + student2.Name);
+                    Console.WriteLine("New Address: " + student2.Address);
+                }
+                else
+                {
+                    Console.WriteLine("Invalid student choice.");
+                }
+            }
+        }
     }
-}
