@@ -100,6 +100,7 @@ namespace OOP1
                 Console.WriteLine("===== OOP Management System =====");
                 Console.WriteLine("1. View Account Details");
                 Console.WriteLine("2. Update Student Address");
+                Console.WriteLine("3. Make a Deposit");
                 Console.WriteLine("20. Exit");
                 Console.Write("Choose an option: ");
 
@@ -123,6 +124,10 @@ namespace OOP1
 
                     case 2:
                         UpdateStudentAddress();
+                        break;
+
+                    case 3:
+                        MakeDeposit();
                         break;
 
                     case 20:
@@ -215,6 +220,69 @@ namespace OOP1
                 {
                     Console.WriteLine("Invalid student choice.");
                 }
+        }
+        static void MakeDeposit()
+        {
+            Console.WriteLine();
+            Console.WriteLine("===== Make a Deposit =====");
+
+            Console.WriteLine("1. Karim");
+            Console.WriteLine("2. Ali");
+            Console.Write("Choose an account: ");
+
+            int accountChoice;
+
+            try
+            {
+                accountChoice = int.Parse(Console.ReadLine());
+            }
+            catch
+            {
+                Console.WriteLine("Invalid input.");
+                return;
+            }
+
+            Console.Write("Enter deposit amount: ");
+
+            double amount;
+
+            try
+            {
+                amount = double.Parse(Console.ReadLine());
+            }
+            catch
+            {
+                Console.WriteLine("Invalid amount.");
+                return;
+            }
+
+            if (amount <= 0)
+            {
+                Console.WriteLine("Amount must be greater than zero.");
+                return;
+            }
+
+            if (accountChoice == 1)
+            {
+                account1.Deposit(amount);
+
+                Console.WriteLine("Deposit completed successfully.");
+                Console.WriteLine("Holder Name: " + account1.HolderName);
+                Console.WriteLine("Updated Balance: " + account1.Balance);
+            }
+            else if (accountChoice == 2)
+            {
+                account2.Deposit(amount);
+
+                Console.WriteLine("Deposit completed successfully.");
+                Console.WriteLine("Holder Name: " + account2.HolderName);
+                Console.WriteLine("Updated Balance: " + account2.Balance);
+            }
+            else
+            {
+                Console.WriteLine("Invalid account choice.");
             }
         }
+
     }
+}
