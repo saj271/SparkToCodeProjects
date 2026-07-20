@@ -77,6 +77,7 @@ namespace OOP2
                 Console.WriteLine("10. Room Type Breakdown Report");
                 Console.WriteLine("11. Check Out a Guest");
                 Console.WriteLine("12. Remove Unavailable Rooms");
+                Console.WriteLine("13. Extend Guest Stay");
                 Console.WriteLine("0. Exit");
                 Console.Write("Choose an option: ");
 
@@ -767,6 +768,65 @@ namespace OOP2
                         {
                             Console.WriteLine("Invalid confirmation. No rooms were removed.");
                         }
+
+                        break;
+
+                    case 13:
+                        Console.WriteLine();
+                        Console.WriteLine("===== Extend Guest Stay =====");
+
+                        Console.Write("Enter Guest ID: ");
+                        string extendGuestId = Console.ReadLine();
+
+                        Guest guestToExtend = guests.FirstOrDefault(
+                            g => g.GuestId == extendGuestId);
+
+                        if (guestToExtend == null)
+                        {
+                            Console.WriteLine("Guest not found.");
+                            break;
+                        }
+
+                        if (guestToExtend.RoomNumber == "Not Assigned")
+                        {
+                            Console.WriteLine("This guest has no active booking to extend.");
+                            break;
+                        }
+
+                        Console.Write("Enter Number of Additional Nights: ");
+                        int additionalNights;
+
+                        if (!int.TryParse(Console.ReadLine(), out additionalNights) ||
+                            additionalNights <= 0)
+                        {
+                            Console.WriteLine("Invalid number of nights.");
+                            break;
+                        }
+
+                        Room guestRoom = rooms.FirstOrDefault(
+                            r => r.RoomNumber.ToString() == guestToExtend.RoomNumber);
+
+                        if (guestRoom == null)
+                        {
+                            Console.WriteLine("Room not found.");
+                            break;
+                        }
+
+                        guestToExtend.TotalNights =
+                            guestToExtend.TotalNights + additionalNights;
+
+                        double updatedCost =
+                            guestToExtend.CalculateTotalCost(guestRoom.PricePerNight);
+
+                        Console.WriteLine();
+                        Console.WriteLine("Guest stay extended successfully.");
+                        Console.WriteLine("Guest Name: " + guestToExtend.GuestName);
+                        Console.WriteLine("Room Number: " + guestToExtend.RoomNumber);
+                        Console.WriteLine("Additional Nights: " + additionalNights);
+                        Console.WriteLine("Updated Total Nights: " +
+                            guestToExtend.TotalNights);
+                        Console.WriteLine("New Total Cost: OMR " +
+                            updatedCost.ToString("F2"));
 
                         break;
 
