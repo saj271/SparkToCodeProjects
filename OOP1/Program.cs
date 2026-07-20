@@ -166,6 +166,7 @@ namespace OOP1
                 Console.WriteLine("10. Update Student Grade");
                 Console.WriteLine("11. Student Report Card");
                 Console.WriteLine("12. Account Health Status");
+                Console.WriteLine("13. Bulk Sale With Revenue Calculation");
                 Console.WriteLine("20. Exit");
                 Console.Write("Choose an option: ");
 
@@ -229,6 +230,10 @@ namespace OOP1
 
                     case 12:
                         AccountHealthStatus();
+                        break;
+
+                    case 13:
+                        BulkSale();
                         break;
 
                     case 20:
@@ -894,6 +899,73 @@ namespace OOP1
             {
                 Console.WriteLine("Status: Premium");
             }
+        }
+
+        static void BulkSale()
+        {
+            Console.WriteLine();
+            Console.WriteLine("===== Bulk Sale =====");
+
+            Console.WriteLine("1. Wireless Mouse");
+            Console.WriteLine("2. Mechanical Keyboard");
+            Console.Write("Choose a product: ");
+
+            int productChoice;
+
+            if (!int.TryParse(Console.ReadLine(), out productChoice))
+            {
+                Console.WriteLine("Invalid input.");
+                return;
+            }
+
+            Product selectedProduct;
+
+            if (productChoice == 1)
+            {
+                selectedProduct = product1;
+            }
+            else if (productChoice == 2)
+            {
+                selectedProduct = product2;
+            }
+            else
+            {
+                Console.WriteLine("Invalid product choice.");
+                return;
+            }
+
+            Console.Write("Enter quantity to sell: ");
+
+            int quantity;
+
+            if (!int.TryParse(Console.ReadLine(), out quantity))
+            {
+                Console.WriteLine("Invalid quantity.");
+                return;
+            }
+
+            if (quantity <= 0)
+            {
+                Console.WriteLine("Quantity must be greater than zero.");
+                return;
+            }
+
+            if (selectedProduct.StockQuantity < quantity)
+            {
+                int needed = quantity - selectedProduct.StockQuantity;
+
+                Console.WriteLine("Not enough stock.");
+                Console.WriteLine("Additional units needed: " + needed);
+                return;
+            }
+
+            selectedProduct.Sell(quantity);
+
+            double revenue = quantity * selectedProduct.Price;
+
+            Console.WriteLine("Sale completed successfully.");
+            Console.WriteLine("Revenue: " + revenue);
+            Console.WriteLine("Remaining Stock: " + selectedProduct.StockQuantity);
         }
     }
 }
