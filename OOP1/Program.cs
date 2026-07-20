@@ -168,6 +168,7 @@ namespace OOP1
                 Console.WriteLine("12. Account Health Status");
                 Console.WriteLine("13. Bulk Sale With Revenue Calculation");
                 Console.WriteLine("14. Scholarship Eligibility Check");
+                Console.WriteLine("15. Full Balance Top-Up Flow");
                 Console.WriteLine("20. Exit");
                 Console.Write("Choose an option: ");
 
@@ -239,6 +240,10 @@ namespace OOP1
 
                     case 14:
                         ScholarshipEligibilityCheck();
+                        break;
+
+                    case 15:
+                        FullBalanceTopUpFlow();
                         break;
 
                     case 20:
@@ -1055,5 +1060,57 @@ namespace OOP1
                 }
             }
         }
+
+        static void FullBalanceTopUpFlow()
+            {
+                Console.WriteLine();
+                Console.WriteLine("===== Full Balance Top-Up Flow =====");
+
+                Console.WriteLine("1. Karim");
+                Console.WriteLine("2. Ali");
+                Console.Write("Choose an account: ");
+
+                int accountChoice;
+
+                if (!int.TryParse(Console.ReadLine(), out accountChoice))
+                {
+                    Console.WriteLine("Invalid input.");
+                    return;
+                }
+
+                BankAccount selectedAccount;
+
+                if (accountChoice == 1)
+                {
+                    selectedAccount = account1;
+                }
+                else if (accountChoice == 2)
+                {
+                    selectedAccount = account2;
+                }
+                else
+                {
+                    Console.WriteLine("Invalid account choice.");
+                    return;
+                }
+
+                double balanceBefore = selectedAccount.Balance;
+
+                if (balanceBefore < 50)
+                {
+                    double topUpAmount = 100 - balanceBefore;
+
+                    selectedAccount.Deposit(topUpAmount);
+
+                    Console.WriteLine("Top-up completed successfully.");
+                    Console.WriteLine("Balance Before: " + balanceBefore);
+                    Console.WriteLine("Balance After: " + selectedAccount.Balance);
+                }
+                else
+                {
+                    Console.WriteLine("No top-up is needed.");
+                    Console.WriteLine("Current Balance: " + selectedAccount.Balance);
+                }
+            }
+        }
     }
-}
