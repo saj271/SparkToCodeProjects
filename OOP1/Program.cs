@@ -164,6 +164,7 @@ namespace OOP1
                 Console.WriteLine("8. Restock Product");
                 Console.WriteLine("9. Transfer Between Accounts");
                 Console.WriteLine("10. Update Student Grade");
+                Console.WriteLine("11. Student Report Card");
                 Console.WriteLine("20. Exit");
                 Console.Write("Choose an option: ");
 
@@ -219,6 +220,10 @@ namespace OOP1
 
                     case 10:
                         UpdateStudentGrade();
+                        break;
+
+                    case 11:
+                        ShowStudentReportCard();
                         break;
 
                     case 20:
@@ -781,6 +786,58 @@ namespace OOP1
                 Console.WriteLine("Student Name: " + student2.Name);
                 Console.WriteLine("New Grade: " + student2.Grade);
             }
+        }
+
+        static void ShowStudentReportCard()
+        {
+            Console.WriteLine();
+            Console.WriteLine("===== Student Report Card =====");
+
+            Console.WriteLine("1. Ali");
+            Console.WriteLine("2. Ahmed");
+            Console.Write("Choose a student: ");
+
+            int studentChoice;
+
+            if (!int.TryParse(Console.ReadLine(), out studentChoice))
+            {
+                Console.WriteLine("Invalid input.");
+                return;
+            }
+
+            Student selectedStudent;
+
+            if (studentChoice == 1)
+            {
+                selectedStudent = student1;
+            }
+            else if (studentChoice == 2)
+            {
+                selectedStudent = student2;
+            }
+            else
+            {
+                Console.WriteLine("Invalid student choice.");
+                return;
+            }
+
+            string result;
+
+            if (selectedStudent.Grade >= 60)
+            {
+                result = "Pass";
+            }
+            else
+            {
+                result = "Fail";
+            }
+
+            Console.WriteLine();
+            Console.WriteLine("===== Report Card =====");
+            Console.WriteLine("Student Name: " + selectedStudent.Name);
+            Console.WriteLine("Address: " + selectedStudent.Address);
+            Console.WriteLine("Grade: " + selectedStudent.Grade);
+            Console.WriteLine("Result: " + result);
         }
     }
 }
