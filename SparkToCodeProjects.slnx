@@ -1,5 +1,6 @@
 <Solution>
   <Project Path="BankingProject/BankingProject.csproj" Id="917acf51-2dc0-46e9-966e-28f891ca9d57" />
+  <Project Path="OOP1/OOP1.csproj" Id="1d0b85d5-8af2-4025-9249-2587e4f251d8" />
   <Project Path="Task1solution/Task1solution.csproj" />
   <Project Path="Task2/Task2.csproj" Id="fd10aa4d-5496-4637-bd7b-9df9519c14c5" />
   <Project Path="Task3/Task3.csproj" Id="33767995-f739-48a7-8971-9eec349e1a0b" />
