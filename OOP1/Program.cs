@@ -160,6 +160,7 @@ namespace OOP1
                 Console.WriteLine("4. Make a Withdrawal");
                 Console.WriteLine("5. View Product Details");
                 Console.WriteLine("6. Register a Student");
+                Console.WriteLine("7. Compare Two Account Balances");
                 Console.WriteLine("20. Exit");
                 Console.Write("Choose an option: ");
 
@@ -199,6 +200,10 @@ namespace OOP1
 
                     case 6:
                         RegisterStudent();
+                        break;
+
+                    case 7:
+                        CompareAccountBalances();
                         break;
 
 
@@ -508,6 +513,28 @@ namespace OOP1
 
                 Console.WriteLine(
                     "Student " + student2.Name + " registered successfully.");
+            }
+        }
+
+        static void CompareAccountBalances()
+        {
+            Console.WriteLine();
+            Console.WriteLine("===== Compare Two Account Balances =====");
+
+            if (account1.Balance > account2.Balance)
+            {
+                Console.WriteLine(account1.HolderName + " has the higher balance.");
+                Console.WriteLine("Balance = " + account1.Balance);
+            }
+            else if (account2.Balance > account1.Balance)
+            {
+                Console.WriteLine(account2.HolderName + " has the higher balance.");
+                Console.WriteLine("Balance = " + account2.Balance);
+            }
+            else
+            {
+                Console.WriteLine("Both accounts have the same balance.");
+                Console.WriteLine("Balance = " + account1.Balance);
             }
         }
     }
