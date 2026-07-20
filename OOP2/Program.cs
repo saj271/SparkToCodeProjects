@@ -79,6 +79,7 @@ namespace OOP2
                 Console.WriteLine("12. Remove Unavailable Rooms");
                 Console.WriteLine("13. Extend Guest Stay");
                 Console.WriteLine("14. Highest Revenue Booking");
+                Console.WriteLine("15. Guest Pagination Viewer");
                 Console.WriteLine("0. Exit");
                 Console.Write("Choose an option: ");
 
@@ -877,6 +878,55 @@ namespace OOP2
                             Console.WriteLine("Room Number: " + booking.RoomNumber);
                             Console.WriteLine("Total Cost: OMR " +
                                 booking.TotalCost.ToString("F2"));
+                        }
+
+                        break;
+
+                    case 15:
+                        Console.WriteLine();
+                        Console.WriteLine("===== Guest Pagination Viewer =====");
+
+                        if (!guests.Any())
+                        {
+                            Console.WriteLine("No guests have been registered yet.");
+                            break;
+                        }
+
+                        int pageSize = 3;
+
+                        int totalGuests = guests.Count();
+
+                        int totalPages = (int)Math.Ceiling(
+                            (double)totalGuests / pageSize);
+
+                        Console.Write("Enter Page Number: ");
+                        int pageNumber;
+
+                        if (!int.TryParse(Console.ReadLine(), out pageNumber) ||
+                            pageNumber <= 0 ||
+                            pageNumber > totalPages)
+                        {
+                            Console.WriteLine("That page does not exist.");
+                            break;
+                        }
+
+                        var guestsOnPage = guests
+                            .Skip((pageNumber - 1) * pageSize)
+                            .Take(pageSize);
+
+                        Console.WriteLine();
+                        Console.WriteLine("Page " + pageNumber + " of " + totalPages);
+                        Console.WriteLine("Total Guests: " + totalGuests);
+                        Console.WriteLine();
+
+                        foreach (Guest currentGuest in guestsOnPage)
+                        {
+                            Console.WriteLine("-------------------------");
+                            Console.WriteLine("Guest ID: " + currentGuest.GuestId);
+                            Console.WriteLine("Guest Name: " + currentGuest.GuestName);
+                            Console.WriteLine("Room Number: " + currentGuest.RoomNumber);
+                            Console.WriteLine("Check-In Date: " + currentGuest.CheckInDate);
+                            Console.WriteLine("Total Nights: " + currentGuest.TotalNights);
                         }
 
                         break;
