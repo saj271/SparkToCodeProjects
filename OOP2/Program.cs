@@ -71,6 +71,7 @@ namespace OOP2
                 Console.WriteLine("4. View All Rooms");
                 Console.WriteLine("5. View All Guests");
                 Console.WriteLine("6. Search & Filter Rooms");
+                Console.WriteLine("7. Guest & Booking Statistics");
                 Console.WriteLine("0. Exit");
                 Console.Write("Choose an option: ");
 
@@ -396,6 +397,109 @@ namespace OOP2
                             default:
                                 Console.WriteLine("Invalid option.");
                                 break;
+                        }
+
+                        break;
+
+                    case 7:
+                        Console.WriteLine();
+                        Console.WriteLine("===== Guest & Booking Statistics =====");
+
+                        int totalRegisteredGuests = guests.Count();
+
+                        int totalBookedGuests = guests
+                            .Where(g => g.RoomNumber != "Not Assigned")
+                            .Count();
+
+                        int totalRoomsCount = rooms.Count();
+
+                        int totalBookedRooms = rooms
+                            .Where(r => r.IsAvailable == false)
+                            .Count();
+
+                        Console.WriteLine("Total Registered Guests: " + totalRegisteredGuests);
+                        Console.WriteLine("Guests With Active Booking: " + totalBookedGuests);
+                        Console.WriteLine("Total Rooms: " + totalRoomsCount);
+                        Console.WriteLine("Booked Rooms: " + totalBookedRooms);
+
+                        var activeBookings = guests
+                            .Where(g => g.RoomNumber != "Not Assigned");
+
+                        if (!activeBookings.Any())
+                        {
+                            Console.WriteLine();
+                            Console.WriteLine("No active bookings recorded.");
+                            break;
+                        }
+
+                        double averageNights = activeBookings
+                            .Average(g => g.TotalNights);
+
+                        Console.WriteLine("Average Number of Nights: " +
+                            averageNights.ToString("F2"));
+
+                        var topGuests = activeBookings
+                            .OrderByDescending(g =>
+                            {
+                                Room bookedRoom = rooms.FirstOrDefault(
+                                    r => r.RoomNumber.ToString() == g.RoomNumber);
+
+                                if (bookedRoom == null)
+                                {
+                                    return 0;
+                                }
+
+                                return g.CalculateTotalCost(bookedRoom.PricePerNight);
+                            })
+                            .Take(3);
+
+                        Console.WriteLine();
+                        Console.WriteLine("===== Top 3 Highest-Spending Guests =====");
+
+                        foreach (Guest currentGuest in topGuests)
+                        {
+                            Room bookedRoom = rooms.FirstOrDefault(
+                                r => r.RoomNumber.ToString() == currentGuest.RoomNumber);
+
+                            if (bookedRoom != null)
+                            {
+                                double totalCost =
+                                    currentGuest.CalculateTotalCost(bookedRoom.PricePerNight);
+
+                                Console.WriteLine("-------------------------");
+                                Console.WriteLine("Guest Name: " + currentGuest.GuestName);
+                                Console.WriteLine("Room Number: " + currentGuest.RoomNumber);
+                                Console.WriteLine("Total Cost: OMR " +
+                                    totalCost.ToString("F2"));
+                            }
+                        }
+
+                        var bookingSummaries = activeBookings.Select(g =>
+                        {
+                            Room bookedRoom = rooms.FirstOrDefault(
+                                r => r.RoomNumber.ToString() == g.RoomNumber);
+
+                            double totalCost = 0;
+
+                            if (bookedRoom != null)
+                            {
+                                totalCost =
+                                    g.CalculateTotalCost(bookedRoom.PricePerNight);
+                            }
+
+                            return g.GuestName +
+                                   " — Room " + g.RoomNumber +
+                                   " — " + g.TotalNights +
+                                   " nights — OMR " +
+                                   totalCost.ToString("F2");
+                        });
+
+                        Console.WriteLine();
+                        Console.WriteLine("===== Booking Summary =====");
+
+                        foreach (string summary in bookingSummaries)
+                        {
+                            Console.WriteLine(summary);
                         }
 
                         break;
