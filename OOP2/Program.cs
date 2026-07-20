@@ -73,6 +73,7 @@ namespace OOP2
                 Console.WriteLine("6. Search & Filter Rooms");
                 Console.WriteLine("7. Guest & Booking Statistics");
                 Console.WriteLine("8. Update Room Price");
+                Console.WriteLine("9. Guest Lookup by Name");
                 Console.WriteLine("0. Exit");
                 Console.Write("Choose an option: ");
 
@@ -547,6 +548,36 @@ namespace OOP2
                         Console.WriteLine("Room Number: " + roomToUpdate.RoomNumber);
                         Console.WriteLine("Old Price: OMR " + oldPrice.ToString("F2"));
                         Console.WriteLine("New Price: OMR " + newPrice.ToString("F2"));
+
+                        break;
+
+                    case 9:
+                        Console.WriteLine();
+                        Console.WriteLine("===== Guest Lookup by Name =====");
+
+                        Console.Write("Enter Guest Name or Partial Name: ");
+                        string searchName = Console.ReadLine();
+
+                        var matchingGuests = guests
+                            .Where(g => g.GuestName.ToLower().Contains(searchName.ToLower()));
+
+                        Console.WriteLine();
+                        Console.WriteLine("Total Matches: " + matchingGuests.Count());
+
+                        if (matchingGuests.Count() == 0)
+                        {
+                            Console.WriteLine("No guests matched that search.");
+                        }
+                        else
+                        {
+                            foreach (Guest currentGuest in matchingGuests)
+                            {
+                                Console.WriteLine("-------------------------");
+                                Console.WriteLine("Guest ID: " + currentGuest.GuestId);
+                                Console.WriteLine("Guest Name: " + currentGuest.GuestName);
+                                Console.WriteLine("Room Number: " + currentGuest.RoomNumber);
+                            }
+                        }
 
                         break;
 
