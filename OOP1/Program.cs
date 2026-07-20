@@ -68,6 +68,18 @@ namespace OOP1
         private string email;
         int age;
 
+        public static int StudentCount = 0;
+
+        public Student()
+        {
+            StudentCount++;
+        }
+
+        public static int GetStudentCount()
+        {
+            return StudentCount;
+        }
+
         public void Register(string Email)
         {
             email = Email;
@@ -184,6 +196,7 @@ namespace OOP1
                 Console.WriteLine("14. Scholarship Eligibility Check");
                 Console.WriteLine("15. Full Balance Top-Up Flow");
                 Console.WriteLine("16. Quick Account Opening");
+                Console.WriteLine("17. Total Students Counter");
                 Console.WriteLine("20. Exit");
                 Console.Write("Choose an option: ");
 
@@ -265,6 +278,9 @@ namespace OOP1
                         QuickAccountOpening();
                         break;
 
+                    case 17:
+                        TotalStudentsCounter();
+                        break;
 
                     case 20:
                         exitProgram = true;
@@ -1155,6 +1171,15 @@ namespace OOP1
             Console.WriteLine("Account Number: " + newAccount.AccountNumber);
             Console.WriteLine("Holder Name: " + newAccount.HolderName);
             Console.WriteLine("Balance: " + newAccount.Balance);
+        }
+
+        static void TotalStudentsCounter()
+        {
+            Console.WriteLine();
+            Console.WriteLine("===== Total Students Counter =====");
+
+            Console.WriteLine(
+                "Total Students = " + Student.GetStudentCount());
         }
     }
     }
