@@ -68,6 +68,7 @@ namespace OOP2
                 Console.WriteLine("1. Add New Room");
                 Console.WriteLine("2. Register New Guest");
                 Console.WriteLine("3. Book a Room for a Guest");
+                Console.WriteLine("4. View All Rooms");
                 Console.WriteLine("0. Exit");
                 Console.Write("Choose an option: ");
 
@@ -191,6 +192,34 @@ namespace OOP2
                         Console.WriteLine("Total Nights: " + guest.TotalNights);
                         Console.WriteLine("Total Cost: " +
                             guest.CalculateTotalCost(room.PricePerNight));
+
+                        break;
+
+                    case 4:
+                        Console.WriteLine();
+                        Console.WriteLine("===== View All Rooms =====");
+
+                        if (rooms.Count() == 0)
+                        {
+                            Console.WriteLine("No rooms have been added yet.");
+                            break;
+                        }
+
+                        Console.WriteLine("Total Rooms: " + rooms.Count());
+                        Console.WriteLine();
+
+                        var sortedRooms = rooms.OrderBy(r => r.RoomNumber);
+
+                        foreach (Room currentRoom in sortedRooms)
+                        {
+                            Console.WriteLine("Room Number: " + currentRoom.RoomNumber);
+                            Console.WriteLine("Room Type: " + currentRoom.RoomType);
+                            Console.WriteLine("Price Per Night: " + currentRoom.PricePerNight);
+                            Console.WriteLine("Availability: " +
+                                (currentRoom.IsAvailable ? "Available" : "Booked"));
+
+                            Console.WriteLine("-------------------------");
+                        }
 
                         break;
 
