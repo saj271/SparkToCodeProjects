@@ -75,6 +75,7 @@ namespace OOP2
                 Console.WriteLine("8. Update Room Price");
                 Console.WriteLine("9. Guest Lookup by Name");
                 Console.WriteLine("10. Room Type Breakdown Report");
+                Console.WriteLine("11. Check Out a Guest");
                 Console.WriteLine("0. Exit");
                 Console.Write("Choose an option: ");
 
@@ -619,6 +620,86 @@ namespace OOP2
                         Console.WriteLine();
                         Console.WriteLine("Overall Average Price: OMR " +
                             overallAverage.ToString("F2"));
+
+                        break;
+
+                    case 11:
+                        Console.WriteLine();
+                        Console.WriteLine("===== Check Out a Guest =====");
+
+                        Console.Write("Enter Guest ID: ");
+                        string checkoutGuestId = Console.ReadLine();
+
+                        Guest guestToCheckout = guests.FirstOrDefault(
+                            g => g.GuestId == checkoutGuestId);
+
+                        if (guestToCheckout == null)
+                        {
+                            Console.WriteLine("Guest not found.");
+                            break;
+                        }
+
+                        if (guestToCheckout.RoomNumber == "Not Assigned")
+                        {
+                            Console.WriteLine("This guest has no active booking.");
+                            break;
+                        }
+
+                        Room checkoutRoom = rooms.FirstOrDefault(
+                            r => r.RoomNumber.ToString() == guestToCheckout.RoomNumber);
+
+                        if (checkoutRoom == null)
+                        {
+                            Console.WriteLine("Room not found.");
+                            break;
+                        }
+
+                        double finalCost =
+                            guestToCheckout.CalculateTotalCost(checkoutRoom.PricePerNight);
+
+                        Console.WriteLine();
+                        Console.WriteLine("===== Final Bill =====");
+                        Console.WriteLine("Guest Name: " + guestToCheckout.GuestName);
+                        Console.WriteLine("Room Number: " + checkoutRoom.RoomNumber);
+                        Console.WriteLine("Room Type: " + checkoutRoom.RoomType);
+                        Console.WriteLine("Check-In Date: " + guestToCheckout.CheckInDate);
+                        Console.WriteLine("Total Nights: " + guestToCheckout.TotalNights);
+                        Console.WriteLine("Price Per Night: OMR " +
+                            checkoutRoom.PricePerNight.ToString("F2"));
+                        Console.WriteLine("Total Cost: OMR " +
+                            finalCost.ToString("F2"));
+
+                        Console.WriteLine();
+                        Console.Write("Confirm Checkout (Y/N): ");
+                        string confirmation = Console.ReadLine();
+
+                        if (confirmation.ToUpper() == "Y")
+                        {
+                            checkoutRoom.IsAvailable = true;
+
+                            guests.Remove(guestToCheckout);
+
+                            bool roomIsAvailable = rooms.Any(
+                                r => r.RoomNumber == checkoutRoom.RoomNumber &&
+                                     r.IsAvailable == true);
+
+                            Console.WriteLine();
+                            Console.WriteLine("Checkout completed successfully.");
+                            Console.WriteLine("Guest Removed: " + guestToCheckout.GuestName);
+                            Console.WriteLine("Room Number: " + checkoutRoom.RoomNumber);
+                            Console.WriteLine("Room Available: " +
+                                (roomIsAvailable ? "Yes" : "No"));
+                            Console.WriteLine("Total Guests: " + guests.Count());
+                            Console.WriteLine("Total Rooms: " + rooms.Count());
+                        }
+                        else if (confirmation.ToUpper() == "N")
+                        {
+                            Console.WriteLine("Checkout cancelled. No changes were made.");
+                        }
+                        else
+                        {
+                            Console.WriteLine("Invalid confirmation. No changes were made.");
+                        }
 
                         break;
 
