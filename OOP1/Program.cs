@@ -8,6 +8,20 @@ namespace OOP1
         public string HolderName { get; set; }
         public double Balance { get; set; }
 
+
+        public BankAccount()
+        {
+        }
+
+
+        public BankAccount(int accountNumber, string holderName, double balance)
+        {
+            AccountNumber = accountNumber;
+            HolderName = holderName;
+            Balance = balance;
+        }
+
+
         public void Deposit(double amount)
         {
             Balance = Balance + amount;
@@ -169,6 +183,7 @@ namespace OOP1
                 Console.WriteLine("13. Bulk Sale With Revenue Calculation");
                 Console.WriteLine("14. Scholarship Eligibility Check");
                 Console.WriteLine("15. Full Balance Top-Up Flow");
+                Console.WriteLine("16. Quick Account Opening");
                 Console.WriteLine("20. Exit");
                 Console.Write("Choose an option: ");
 
@@ -245,6 +260,11 @@ namespace OOP1
                     case 15:
                         FullBalanceTopUpFlow();
                         break;
+
+                    case 16:
+                        QuickAccountOpening();
+                        break;
+
 
                     case 20:
                         exitProgram = true;
@@ -1112,5 +1132,29 @@ namespace OOP1
                     Console.WriteLine("Current Balance: " + selectedAccount.Balance);
                 }
             }
+
+        static void QuickAccountOpening()
+        {
+            Console.WriteLine();
+            Console.WriteLine("===== Quick Account Opening =====");
+
+            Console.Write("Enter Account Number: ");
+            int accountNumber = int.Parse(Console.ReadLine());
+
+            Console.Write("Enter Holder Name: ");
+            string holderName = Console.ReadLine();
+
+            Console.Write("Enter Starting Balance: ");
+            double balance = double.Parse(Console.ReadLine());
+
+            BankAccount newAccount =
+                new BankAccount(accountNumber, holderName, balance);
+
+            Console.WriteLine();
+            Console.WriteLine("Account created successfully.");
+            Console.WriteLine("Account Number: " + newAccount.AccountNumber);
+            Console.WriteLine("Holder Name: " + newAccount.HolderName);
+            Console.WriteLine("Balance: " + newAccount.Balance);
         }
+    }
     }
