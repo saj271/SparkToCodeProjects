@@ -61,6 +61,7 @@ namespace OOP2
 
             Console.WriteLine("===== Hotel Management System =====");
             Console.WriteLine("1. Add New Room");
+            Console.WriteLine("2. Register New Guest");
             Console.Write("Choose an option: ");
 
             int choice = Convert.ToInt32(Console.ReadLine());
@@ -102,6 +103,48 @@ namespace OOP2
                     }
 
                     break;
+
+                case 2:
+                    Console.WriteLine();
+                    Console.WriteLine("===== Register New Guest =====");
+
+                    Console.Write("Enter Guest Name: ");
+                    string guestName = Console.ReadLine();
+
+                    Console.Write("Enter Check-In Date: ");
+                    string checkInDate = Console.ReadLine();
+
+                    Console.Write("Enter Number of Nights: ");
+                    int totalNights;
+
+                    if (!int.TryParse(Console.ReadLine(), out totalNights) || totalNights <= 0)
+                    {
+                        Console.WriteLine("Invalid number of nights.");
+                        break;
+                    }
+
+                    string guestId = "G" + (guests.Count() + 1).ToString("D3");
+
+                    Guest newGuest = new Guest();
+
+                    newGuest.GuestId = guestId;
+                    newGuest.GuestName = guestName;
+                    newGuest.RoomNumber = "Not Assigned";
+                    newGuest.CheckInDate = checkInDate;
+                    newGuest.TotalNights = totalNights;
+
+                    guests.Add(newGuest);
+
+                    Console.WriteLine();
+                    Console.WriteLine("Guest registered successfully.");
+                    Console.WriteLine("Guest ID: " + newGuest.GuestId);
+                    Console.WriteLine("Guest Name: " + newGuest.GuestName);
+                    Console.WriteLine("Room Number: " + newGuest.RoomNumber);
+                    Console.WriteLine("Check-In Date: " + newGuest.CheckInDate);
+                    Console.WriteLine("Total Nights: " + newGuest.TotalNights);
+
+                    break;
+
 
                 default:
                     Console.WriteLine("Invalid option.");
