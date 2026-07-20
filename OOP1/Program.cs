@@ -159,6 +159,7 @@ namespace OOP1
                 Console.WriteLine("3. Make a Deposit");
                 Console.WriteLine("4. Make a Withdrawal");
                 Console.WriteLine("5. View Product Details");
+                Console.WriteLine("6. Register a Student");
                 Console.WriteLine("20. Exit");
                 Console.Write("Choose an option: ");
 
@@ -194,6 +195,10 @@ namespace OOP1
 
                     case 5:
                         ViewProductDetails();
+                        break;
+
+                    case 6:
+                        RegisterStudent();
                         break;
 
 
@@ -451,6 +456,58 @@ namespace OOP1
             else
             {
                 Console.WriteLine("Invalid product choice.");
+            }
+        }
+
+        static void RegisterStudent()
+        {
+            Console.WriteLine();
+            Console.WriteLine("===== Register a Student =====");
+
+            Console.WriteLine("1. Ali");
+            Console.WriteLine("2. Ahmed");
+            Console.Write("Choose a student: ");
+
+            int studentChoice;
+
+            try
+            {
+                studentChoice = int.Parse(Console.ReadLine());
+            }
+            catch
+            {
+                Console.WriteLine("Invalid input.");
+                return;
+            }
+
+            if (studentChoice != 1 && studentChoice != 2)
+            {
+                Console.WriteLine("Invalid student choice.");
+                return;
+            }
+
+            Console.Write("Enter student email: ");
+            string studentEmail = Console.ReadLine();
+
+            if (string.IsNullOrWhiteSpace(studentEmail))
+            {
+                Console.WriteLine("Email cannot be empty.");
+                return;
+            }
+
+            if (studentChoice == 1)
+            {
+                student1.Register(studentEmail);
+
+                Console.WriteLine(
+                    "Student " + student1.Name + " registered successfully.");
+            }
+            else
+            {
+                student2.Register(studentEmail);
+
+                Console.WriteLine(
+                    "Student " + student2.Name + " registered successfully.");
             }
         }
     }
