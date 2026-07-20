@@ -161,6 +161,7 @@ namespace OOP1
                 Console.WriteLine("5. View Product Details");
                 Console.WriteLine("6. Register a Student");
                 Console.WriteLine("7. Compare Two Account Balances");
+                Console.WriteLine("8. Restock Product");
                 Console.WriteLine("20. Exit");
                 Console.Write("Choose an option: ");
 
@@ -206,6 +207,9 @@ namespace OOP1
                         CompareAccountBalances();
                         break;
 
+                    case 8:
+                        RestockProduct();
+                        break;
 
                     case 20:
                         exitProgram = true;
@@ -535,6 +539,83 @@ namespace OOP1
             {
                 Console.WriteLine("Both accounts have the same balance.");
                 Console.WriteLine("Balance = " + account1.Balance);
+            }
+        }
+
+        static void RestockProduct()
+        {
+            Console.WriteLine();
+            Console.WriteLine("===== Restock Product =====");
+
+            Console.WriteLine("1. Wireless Mouse");
+            Console.WriteLine("2. Mechanical Keyboard");
+            Console.Write("Choose a product: ");
+
+            int productChoice;
+
+            try
+            {
+                productChoice = int.Parse(Console.ReadLine());
+            }
+            catch
+            {
+                Console.WriteLine("Invalid input.");
+                return;
+            }
+
+            if (productChoice != 1 && productChoice != 2)
+            {
+                Console.WriteLine("Invalid product choice.");
+                return;
+            }
+
+            Console.Write("Enter quantity to add: ");
+
+            int quantity;
+
+            try
+            {
+                quantity = int.Parse(Console.ReadLine());
+            }
+            catch
+            {
+                Console.WriteLine("Invalid quantity.");
+                return;
+            }
+
+            if (quantity <= 0)
+            {
+                Console.WriteLine("Quantity must be greater than zero.");
+                return;
+            }
+
+            Product selectedProduct;
+
+            if (productChoice == 1)
+            {
+                selectedProduct = product1;
+            }
+            else
+            {
+                selectedProduct = product2;
+            }
+
+            selectedProduct.Restock(quantity);
+
+            Console.WriteLine("Product restocked successfully.");
+            Console.WriteLine("Current Stock = " + selectedProduct.StockQuantity);
+
+            if (selectedProduct.StockQuantity < 10)
+            {
+                Console.WriteLine("Stock Level: Low");
+            }
+            else if (selectedProduct.StockQuantity < 50)
+            {
+                Console.WriteLine("Stock Level: Moderate");
+            }
+            else
+            {
+                Console.WriteLine("Stock Level: Well Stocked");
             }
         }
     }
