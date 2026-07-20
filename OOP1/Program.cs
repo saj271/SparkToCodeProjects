@@ -163,6 +163,7 @@ namespace OOP1
                 Console.WriteLine("7. Compare Two Account Balances");
                 Console.WriteLine("8. Restock Product");
                 Console.WriteLine("9. Transfer Between Accounts");
+                Console.WriteLine("10. Update Student Grade");
                 Console.WriteLine("20. Exit");
                 Console.Write("Choose an option: ");
 
@@ -214,6 +215,10 @@ namespace OOP1
 
                     case 9:
                         TransferBetweenAccounts();
+                        break;
+
+                    case 10:
+                        UpdateStudentGrade();
                         break;
 
                     case 20:
@@ -718,6 +723,64 @@ namespace OOP1
 
             Console.WriteLine(
                 "Destination Account Balance: " + destinationAccount.Balance);
+        }
+    
+
+    static void UpdateStudentGrade()
+        {
+            Console.WriteLine();
+            Console.WriteLine("===== Update Student Grade =====");
+
+            Console.WriteLine("1. Ali");
+            Console.WriteLine("2. Ahmed");
+            Console.Write("Choose a student: ");
+
+            int studentChoice;
+
+            if (!int.TryParse(Console.ReadLine(), out studentChoice))
+            {
+                Console.WriteLine("Invalid input.");
+                return;
+            }
+
+            if (studentChoice != 1 && studentChoice != 2)
+            {
+                Console.WriteLine("Invalid student choice.");
+                return;
+            }
+
+            Console.Write("Enter the new grade: ");
+
+            int newGrade;
+
+            if (!int.TryParse(Console.ReadLine(), out newGrade))
+            {
+                Console.WriteLine("Invalid grade. Please enter a number.");
+                return;
+            }
+
+            if (newGrade < 0 || newGrade > 100)
+            {
+                Console.WriteLine("Grade must be between 0 and 100.");
+                return;
+            }
+
+            if (studentChoice == 1)
+            {
+                student1.Grade = newGrade;
+
+                Console.WriteLine("Grade updated successfully.");
+                Console.WriteLine("Student Name: " + student1.Name);
+                Console.WriteLine("New Grade: " + student1.Grade);
+            }
+            else
+            {
+                student2.Grade = newGrade;
+
+                Console.WriteLine("Grade updated successfully.");
+                Console.WriteLine("Student Name: " + student2.Name);
+                Console.WriteLine("New Grade: " + student2.Grade);
+            }
         }
     }
 }
