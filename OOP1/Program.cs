@@ -167,6 +167,7 @@ namespace OOP1
                 Console.WriteLine("11. Student Report Card");
                 Console.WriteLine("12. Account Health Status");
                 Console.WriteLine("13. Bulk Sale With Revenue Calculation");
+                Console.WriteLine("14. Scholarship Eligibility Check");
                 Console.WriteLine("20. Exit");
                 Console.Write("Choose an option: ");
 
@@ -234,6 +235,10 @@ namespace OOP1
 
                     case 13:
                         BulkSale();
+                        break;
+
+                    case 14:
+                        ScholarshipEligibilityCheck();
                         break;
 
                     case 20:
@@ -966,6 +971,89 @@ namespace OOP1
             Console.WriteLine("Sale completed successfully.");
             Console.WriteLine("Revenue: " + revenue);
             Console.WriteLine("Remaining Stock: " + selectedProduct.StockQuantity);
+        }
+
+        static void ScholarshipEligibilityCheck()
+        {
+            Console.WriteLine();
+            Console.WriteLine("===== Scholarship Eligibility Check =====");
+
+            Console.WriteLine("Choose a student:");
+            Console.WriteLine("1. Ali");
+            Console.WriteLine("2. Ahmed");
+
+            int studentChoice;
+
+            if (!int.TryParse(Console.ReadLine(), out studentChoice))
+            {
+                Console.WriteLine("Invalid input.");
+                return;
+            }
+
+            Student selectedStudent;
+
+            if (studentChoice == 1)
+            {
+                selectedStudent = student1;
+            }
+            else if (studentChoice == 2)
+            {
+                selectedStudent = student2;
+            }
+            else
+            {
+                Console.WriteLine("Invalid student choice.");
+                return;
+            }
+
+            Console.WriteLine();
+            Console.WriteLine("Choose a bank account:");
+            Console.WriteLine("1. Karim");
+            Console.WriteLine("2. Ali");
+
+            int accountChoice;
+
+            if (!int.TryParse(Console.ReadLine(), out accountChoice))
+            {
+                Console.WriteLine("Invalid input.");
+                return;
+            }
+
+            BankAccount selectedAccount;
+
+            if (accountChoice == 1)
+            {
+                selectedAccount = account1;
+            }
+            else if (accountChoice == 2)
+            {
+                selectedAccount = account2;
+            }
+            else
+            {
+                Console.WriteLine("Invalid account choice.");
+                return;
+            }
+
+            if (selectedStudent.Grade >= 80 &&
+                selectedAccount.Balance >= 100)
+            {
+                Console.WriteLine("Eligible for scholarship.");
+            }
+            else
+            {
+                Console.WriteLine("Not eligible for scholarship.");
+
+                if (selectedStudent.Grade < 80)
+                {
+                    Console.WriteLine("Reason: Grade is below 80.");
+                }
+
+                if (selectedAccount.Balance < 100)
+                {
+                    Console.WriteLine("Reason: Balance is below 100.");
+                }
+            }
         }
     }
 }
