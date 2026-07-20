@@ -66,6 +66,50 @@ namespace OOP1
         }
     }
 
+    class Product
+    {
+        public string ProductName { get; set; }
+        public double Price { get; set; }
+        public int StockQuantity { get; set; }
+
+        public void Sell(int quantity)
+        {
+            if (StockQuantity >= quantity)
+            {
+                StockQuantity = StockQuantity - quantity;
+            }
+            else
+            {
+                Console.WriteLine("Not enough stock.");
+            }
+
+            LogTransaction();
+        }
+
+        public void Restock(int quantity)
+        {
+            StockQuantity = StockQuantity + quantity;
+            LogTransaction();
+        }
+
+        public double GetInventoryValue()
+        {
+            PrintDetails();
+            return Price * StockQuantity;
+        }
+
+        private void PrintDetails()
+        {
+            Console.WriteLine("Product Name: " + ProductName);
+            Console.WriteLine("Price: " + Price);
+            Console.WriteLine("Stock Quantity: " + StockQuantity);
+        }
+
+        private void LogTransaction()
+        {
+            Console.WriteLine("Transaction logged.");
+        }
+    }
     internal class Program
     {
         static BankAccount account1 = new BankAccount();
@@ -73,6 +117,9 @@ namespace OOP1
 
         static Student student1 = new Student();
         static Student student2 = new Student();
+
+        static Product product1 = new Product();
+        static Product product2 = new Product();
 
         static void Main(string[] args)
         {
@@ -92,6 +139,15 @@ namespace OOP1
             student2.Address = "Muscat";
             student2.Grade = 70;
 
+            product1.ProductName = "Wireless Mouse";
+            product1.Price = 5.500;
+            product1.StockQuantity = 50;
+
+            product2.ProductName = "Mechanical Keyboard";
+            product2.Price = 15.750;
+            product2.StockQuantity = 20;
+
+
             bool exitProgram = false;
 
             while (!exitProgram)
@@ -102,6 +158,7 @@ namespace OOP1
                 Console.WriteLine("2. Update Student Address");
                 Console.WriteLine("3. Make a Deposit");
                 Console.WriteLine("4. Make a Withdrawal");
+                Console.WriteLine("5. View Product Details");
                 Console.WriteLine("20. Exit");
                 Console.Write("Choose an option: ");
 
@@ -134,6 +191,11 @@ namespace OOP1
                     case 4:
                         MakeWithdrawal();
                         break;
+
+                    case 5:
+                        ViewProductDetails();
+                        break;
+
 
                     case 20:
                         exitProgram = true;
@@ -349,5 +411,47 @@ namespace OOP1
             }
         }
 
+        static void ViewProductDetails()
+        {
+            Console.WriteLine();
+            Console.WriteLine("===== View Product Details =====");
+
+            Console.WriteLine("1. Wireless Mouse");
+            Console.WriteLine("2. Mechanical Keyboard");
+            Console.Write("Choose a product: ");
+
+            int productChoice;
+
+            try
+            {
+                productChoice = int.Parse(Console.ReadLine());
+            }
+            catch
+            {
+                Console.WriteLine("Invalid input.");
+                return;
+            }
+
+            double inventoryValue;
+
+            if (productChoice == 1)
+            {
+                inventoryValue = product1.GetInventoryValue();
+
+                Console.WriteLine(
+                    "Total Inventory Value: " + inventoryValue);
+            }
+            else if (productChoice == 2)
+            {
+                inventoryValue = product2.GetInventoryValue();
+
+                Console.WriteLine(
+                    "Total Inventory Value: " + inventoryValue);
+            }
+            else
+            {
+                Console.WriteLine("Invalid product choice.");
+            }
+        }
     }
 }
