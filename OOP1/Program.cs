@@ -165,6 +165,7 @@ namespace OOP1
                 Console.WriteLine("9. Transfer Between Accounts");
                 Console.WriteLine("10. Update Student Grade");
                 Console.WriteLine("11. Student Report Card");
+                Console.WriteLine("12. Account Health Status");
                 Console.WriteLine("20. Exit");
                 Console.Write("Choose an option: ");
 
@@ -224,6 +225,10 @@ namespace OOP1
 
                     case 11:
                         ShowStudentReportCard();
+                        break;
+
+                    case 12:
+                        AccountHealthStatus();
                         break;
 
                     case 20:
@@ -838,6 +843,57 @@ namespace OOP1
             Console.WriteLine("Address: " + selectedStudent.Address);
             Console.WriteLine("Grade: " + selectedStudent.Grade);
             Console.WriteLine("Result: " + result);
+        }
+
+    static void AccountHealthStatus()
+        {
+            Console.WriteLine();
+            Console.WriteLine("===== Account Health Status =====");
+
+            Console.WriteLine("1. Karim");
+            Console.WriteLine("2. Ali");
+            Console.Write("Choose an account: ");
+
+            int accountChoice;
+
+            if (!int.TryParse(Console.ReadLine(), out accountChoice))
+            {
+                Console.WriteLine("Invalid input.");
+                return;
+            }
+
+            BankAccount selectedAccount;
+
+            if (accountChoice == 1)
+            {
+                selectedAccount = account1;
+            }
+            else if (accountChoice == 2)
+            {
+                selectedAccount = account2;
+            }
+            else
+            {
+                Console.WriteLine("Invalid account choice.");
+                return;
+            }
+
+            Console.WriteLine();
+            Console.WriteLine("Holder Name: " + selectedAccount.HolderName);
+            Console.WriteLine("Balance: " + selectedAccount.Balance);
+
+            if (selectedAccount.Balance < 50)
+            {
+                Console.WriteLine("Status: Low Balance");
+            }
+            else if (selectedAccount.Balance <= 1000)
+            {
+                Console.WriteLine("Status: Healthy");
+            }
+            else
+            {
+                Console.WriteLine("Status: Premium");
+            }
         }
     }
 }
