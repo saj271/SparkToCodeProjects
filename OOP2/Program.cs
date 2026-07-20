@@ -74,6 +74,7 @@ namespace OOP2
                 Console.WriteLine("7. Guest & Booking Statistics");
                 Console.WriteLine("8. Update Room Price");
                 Console.WriteLine("9. Guest Lookup by Name");
+                Console.WriteLine("10. Room Type Breakdown Report");
                 Console.WriteLine("0. Exit");
                 Console.Write("Choose an option: ");
 
@@ -578,6 +579,46 @@ namespace OOP2
                                 Console.WriteLine("Room Number: " + currentGuest.RoomNumber);
                             }
                         }
+
+                        break;
+
+                    case 10:
+
+                        Console.WriteLine();
+                        Console.WriteLine("===== Room Type Breakdown Report =====");
+
+                        string[] roomTypes = { "Single", "Double", "Suite" };
+
+                        foreach (string type in roomTypes)
+                        {
+                            int roomCount = rooms
+                                .Where(r => r.RoomType == type)
+                                .Count();
+
+                            Console.WriteLine();
+                            Console.WriteLine("Room Type: " + type);
+                            Console.WriteLine("Total Rooms: " + roomCount);
+
+                            if (roomCount == 0)
+                            {
+                                Console.WriteLine("Average Price: N/A");
+                            }
+                            else
+                            {
+                                double averagePrice = rooms
+                                    .Where(r => r.RoomType == type)
+                                    .Average(r => r.PricePerNight);
+
+                                Console.WriteLine("Average Price: OMR " +
+                                    averagePrice.ToString("F2"));
+                            }
+                        }
+
+                        double overallAverage = rooms.Average(r => r.PricePerNight);
+
+                        Console.WriteLine();
+                        Console.WriteLine("Overall Average Price: OMR " +
+                            overallAverage.ToString("F2"));
 
                         break;
 
