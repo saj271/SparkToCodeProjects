@@ -74,6 +74,7 @@ namespace OOP1
 
         private string email;
         int age;
+        private int securityPin;
 
         public static int StudentCount = 0;
 
@@ -87,6 +88,13 @@ namespace OOP1
             return StudentCount;
         }
 
+        public int SecurityPin
+        {
+            set
+            {
+                securityPin = value;
+            }
+        }
         public void Register(string Email)
         {
             email = Email;
@@ -205,6 +213,7 @@ namespace OOP1
                 Console.WriteLine("16. Quick Account Opening");
                 Console.WriteLine("17. Total Students Counter");
                 Console.WriteLine("18. Overdrawn Account Check");
+                Console.WriteLine("19. Set Student Security PIN");
                 Console.WriteLine("20. Exit");
                 Console.Write("Choose an option: ");
 
@@ -292,6 +301,10 @@ namespace OOP1
 
                     case 18:
                         OverdrawnAccountCheck();
+                        break;
+
+                    case 19:
+                        SetStudentSecurityPin();
                         break;
 
                     case 20:
@@ -1235,6 +1248,56 @@ namespace OOP1
             {
                 Console.WriteLine("The account is not overdrawn.");
             }
+        }
+
+        static void SetStudentSecurityPin()
+        {
+            Console.WriteLine();
+            Console.WriteLine("===== Set Student Security PIN =====");
+
+            Console.WriteLine("1. Ali");
+            Console.WriteLine("2. Ahmed");
+            Console.Write("Choose a student: ");
+
+            int studentChoice;
+
+            if (!int.TryParse(Console.ReadLine(), out studentChoice))
+            {
+                Console.WriteLine("Invalid input.");
+                return;
+            }
+
+            Student selectedStudent;
+
+            if (studentChoice == 1)
+            {
+                selectedStudent = student1;
+            }
+            else if (studentChoice == 2)
+            {
+                selectedStudent = student2;
+            }
+            else
+            {
+                Console.WriteLine("Invalid student choice.");
+                return;
+            }
+
+            Console.Write("Enter a 4-digit PIN: ");
+            string pinInput = Console.ReadLine();
+
+            int pin;
+
+            if (!int.TryParse(pinInput, out pin) ||
+                pinInput.Length != 4)
+            {
+                Console.WriteLine("PIN must be exactly 4 digits.");
+                return;
+            }
+
+            selectedStudent.SecurityPin = pin;
+
+            Console.WriteLine("Security PIN was set successfully.");
         }
     }
     }
