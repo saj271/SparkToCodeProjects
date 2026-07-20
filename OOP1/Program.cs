@@ -162,6 +162,7 @@ namespace OOP1
                 Console.WriteLine("6. Register a Student");
                 Console.WriteLine("7. Compare Two Account Balances");
                 Console.WriteLine("8. Restock Product");
+                Console.WriteLine("9. Transfer Between Accounts");
                 Console.WriteLine("20. Exit");
                 Console.Write("Choose an option: ");
 
@@ -209,6 +210,10 @@ namespace OOP1
 
                     case 8:
                         RestockProduct();
+                        break;
+
+                    case 9:
+                        TransferBetweenAccounts();
                         break;
 
                     case 20:
@@ -617,6 +622,102 @@ namespace OOP1
             {
                 Console.WriteLine("Stock Level: Well Stocked");
             }
+        }
+
+        static void TransferBetweenAccounts()
+        {
+            Console.WriteLine();
+            Console.WriteLine("===== Transfer Between Accounts =====");
+
+            Console.WriteLine("1. Karim");
+            Console.WriteLine("2. Ali");
+            Console.Write("Choose the source account: ");
+
+            int sourceChoice;
+
+            if (!int.TryParse(Console.ReadLine(), out sourceChoice))
+            {
+                Console.WriteLine("Invalid input.");
+                return;
+            }
+
+            Console.Write("Choose the destination account: ");
+
+            int destinationChoice;
+
+            if (!int.TryParse(Console.ReadLine(), out destinationChoice))
+            {
+                Console.WriteLine("Invalid input.");
+                return;
+            }
+
+            if ((sourceChoice != 1 && sourceChoice != 2) ||
+                (destinationChoice != 1 && destinationChoice != 2))
+            {
+                Console.WriteLine("Invalid account choice.");
+                return;
+            }
+
+            if (sourceChoice == destinationChoice)
+            {
+                Console.WriteLine(
+                    "Source and destination accounts cannot be the same.");
+
+                return;
+            }
+
+            Console.Write("Enter transfer amount: ");
+
+            double amount;
+
+            if (!double.TryParse(Console.ReadLine(), out amount))
+            {
+                Console.WriteLine("Invalid amount.");
+                return;
+            }
+
+            if (amount <= 0)
+            {
+                Console.WriteLine("Amount must be greater than zero.");
+                return;
+            }
+
+            BankAccount sourceAccount;
+            BankAccount destinationAccount;
+
+            if (sourceChoice == 1)
+            {
+                sourceAccount = account1;
+            }
+            else
+            {
+                sourceAccount = account2;
+            }
+
+            if (destinationChoice == 1)
+            {
+                destinationAccount = account1;
+            }
+            else
+            {
+                destinationAccount = account2;
+            }
+
+            if (sourceAccount.Balance < amount)
+            {
+                Console.WriteLine("Transfer failed: Insufficient balance.");
+                return;
+            }
+
+            sourceAccount.Withdraw(amount);
+            destinationAccount.Deposit(amount);
+
+            Console.WriteLine("Transfer completed successfully.");
+            Console.WriteLine(
+                "Source Account Balance: " + sourceAccount.Balance);
+
+            Console.WriteLine(
+                "Destination Account Balance: " + destinationAccount.Balance);
         }
     }
 }
