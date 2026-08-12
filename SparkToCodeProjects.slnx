@@ -1,6 +1,7 @@
 <Solution>
   <Folder Name="/Solution Items/">
     <File Path="DatabaseTasks/Airline ERD.png" />
+    <File Path="DatabaseTasks/College ERD.png" />
   </Folder>
   <Project Path="BankingProject/BankingProject.csproj" Id="917acf51-2dc0-46e9-966e-28f891ca9d57" />
   <Project Path="OOP1/OOP1.csproj" Id="1d0b85d5-8af2-4025-9249-2587e4f251d8" />
