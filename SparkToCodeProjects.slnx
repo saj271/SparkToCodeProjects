@@ -1,6 +1,7 @@
 <Solution>
   <Folder Name="/Solution Items/">
     <File Path="DatabaseTasks/Airline ERD.png" />
+    <File Path="DatabaseTasks/Airline mapping.png" />
     <File Path="DatabaseTasks/College ERD.png" />
     <File Path="DatabaseTasks/Company ERD.png" />
   </Folder>
