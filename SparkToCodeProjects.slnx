@@ -3,6 +3,7 @@
     <File Path="DatabaseTasks/Airline ERD.png" />
     <File Path="DatabaseTasks/Airline mapping.png" />
     <File Path="DatabaseTasks/College ERD.png" />
+    <File Path="DatabaseTasks/College mapping.png" />
     <File Path="DatabaseTasks/Company ERD.png" />
   </Folder>
   <Project Path="BankingProject/BankingProject.csproj" Id="917acf51-2dc0-46e9-966e-28f891ca9d57" />
